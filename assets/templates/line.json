@@ -1,0 +1,61 @@
+{
+  "type": "line",
+  "width": 1000,
+  "height": 650,
+  "data_status": "illustrative",
+  "source": "Synthetic demonstration values for template validation; not paper results.",
+  "title": "Sensitivity to the execution budget",
+  "data": {
+    "x": [
+      15,
+      30,
+      60
+    ],
+    "x_kind": "numeric",
+    "series": [
+      {
+        "name": "Method A",
+        "y": [
+          41,
+          56,
+          68
+        ],
+        "lower": [
+          37,
+          52,
+          64
+        ],
+        "upper": [
+          45,
+          60,
+          72
+        ]
+      },
+      {
+        "name": "Method B",
+        "y": [
+          35,
+          43,
+          49
+        ],
+        "lower": [
+          31,
+          39,
+          45
+        ],
+        "upper": [
+          39,
+          47,
+          53
+        ]
+      }
+    ],
+    "x_label": "Maximum steps",
+    "y_label": "Completion rate (%)",
+    "y_range": [
+      0,
+      100
+    ],
+    "uncertainty": "Illustrative 95% bootstrap confidence interval"
+  }
+}

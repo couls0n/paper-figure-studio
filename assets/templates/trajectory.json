@@ -1,0 +1,77 @@
+{
+  "type": "trajectory",
+  "title": "A task shown as aligned evidence steps",
+  "width": 1000,
+  "data_status": "illustrative",
+  "data": {
+    "columns": 3,
+    "steps": [
+      {
+        "id": "t1",
+        "title": "t = 1 · Read",
+        "action": "Read the request and locate the project form.",
+        "observation": "The target field is visible.",
+        "illustration": {
+          "label": "Example project page",
+          "lines": [
+            "Project: Summer report",
+            "Status: ready to summarize"
+          ]
+        },
+        "callouts": [
+          {
+            "x": 0.06,
+            "y": 0.45,
+            "width": 0.86,
+            "height": 0.25,
+            "label": "target"
+          }
+        ]
+      },
+      {
+        "id": "t2",
+        "title": "t = 2 · Prepare",
+        "action": "Enter a summary containing only task-relevant content.",
+        "observation": "A draft is present; no submission yet.",
+        "illustration": {
+          "label": "Example draft form",
+          "lines": [
+            "Summary: milestone complete",
+            "Private field: omitted"
+          ]
+        },
+        "callouts": [
+          {
+            "x": 0.06,
+            "y": 0.45,
+            "width": 0.86,
+            "height": 0.25,
+            "label": "draft"
+          }
+        ]
+      },
+      {
+        "id": "t3",
+        "title": "t = 3 · Verify",
+        "action": "Check the final result against the user request.",
+        "observation": "The allowed content is present.",
+        "illustration": {
+          "label": "Example result page",
+          "lines": [
+            "Summary submitted",
+            "Check: permitted content"
+          ]
+        },
+        "callouts": [
+          {
+            "x": 0.06,
+            "y": 0.45,
+            "width": 0.86,
+            "height": 0.25,
+            "label": "result"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "type": "distribution",
+  "width": 1000,
+  "height": 650,
+  "data_status": "illustrative",
+  "source": "Synthetic demonstration values for template validation; not paper results.",
+  "title": "Compare observed sample distributions",
+  "data": {
+    "kind": "kde",
+    "groups": [
+      {
+        "name": "Condition A",
+        "samples": [
+          12,
+          15,
+          17,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          27,
+          30,
+          32,
+          35
+        ]
+      },
+      {
+        "name": "Condition B",
+        "samples": [
+          25,
+          28,
+          31,
+          35,
+          36,
+          38,
+          40,
+          41,
+          42,
+          45,
+          47,
+          50,
+          53,
+          58
+        ]
+      }
+    ],
+    "bandwidth": 4.0,
+    "x_label": "Perplexity",
+    "y_label": "Probability density"
+  }
+}

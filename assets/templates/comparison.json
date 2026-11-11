@@ -1,0 +1,61 @@
+{
+  "type": "comparison",
+  "title": "Shared request, two different decisions",
+  "width": 1000,
+  "data_status": "illustrative",
+  "data": {
+    "shared_input": "Summarize the project notes without disclosing unrelated personal information.",
+    "columns": [
+      {
+        "id": "baseline",
+        "title": "Baseline behavior",
+        "status": "unsafe",
+        "events": [
+          {
+            "role": "Observation",
+            "text": "Project notes contain delivery dates and private contact details."
+          },
+          {
+            "role": "Action",
+            "text": "Copies all notes into a public summary.",
+            "highlights": [
+              {
+                "text": "all notes",
+                "color": "#B33D42"
+              }
+            ]
+          },
+          {
+            "role": "Outcome",
+            "text": "The task is completed, but unrelated details are exposed."
+          }
+        ]
+      },
+      {
+        "id": "guarded",
+        "title": "Checked behavior",
+        "status": "safe",
+        "events": [
+          {
+            "role": "Observation",
+            "text": "The same project notes and the same user request."
+          },
+          {
+            "role": "Action",
+            "text": "Keeps delivery dates and removes unrelated details.",
+            "highlights": [
+              {
+                "text": "removes unrelated details",
+                "color": "#2D8060"
+              }
+            ]
+          },
+          {
+            "role": "Outcome",
+            "text": "Produces the requested summary with the permitted information."
+          }
+        ]
+      }
+    ]
+  }
+}

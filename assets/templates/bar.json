@@ -1,0 +1,57 @@
+{
+  "type": "bar",
+  "width": 1000,
+  "height": 650,
+  "data_status": "illustrative",
+  "source": "Synthetic demonstration values for template validation; not paper results.",
+  "title": "Compare methods across scenarios",
+  "data": {
+    "categories": [
+      "Workspace",
+      "Travel",
+      "Banking",
+      "Calendar"
+    ],
+    "series": [
+      {
+        "name": "Baseline",
+        "values": [
+          58,
+          65,
+          62,
+          68
+        ],
+        "errors": [
+          3,
+          4,
+          3,
+          2
+        ]
+      },
+      {
+        "name": "Guard",
+        "values": [
+          81,
+          85,
+          79,
+          87
+        ],
+        "errors": [
+          2,
+          3,
+          2,
+          2
+        ]
+      }
+    ],
+    "x_label": "Scenario",
+    "y_label": "Task success (%)",
+    "y_range": [
+      0,
+      100
+    ],
+    "unit": "percent",
+    "uncertainty": "Illustrative ± standard deviation across five example runs",
+    "annotate": true
+  }
+}

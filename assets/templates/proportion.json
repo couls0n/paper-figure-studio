@@ -1,0 +1,41 @@
+{
+  "type": "proportion",
+  "width": 1000,
+  "height": 650,
+  "data_status": "illustrative",
+  "source": "Synthetic demonstration values for template validation; not paper results.",
+  "title": "Two independent classifications",
+  "data": {
+    "layout": "concentric",
+    "rings": [
+      {
+        "name": "Constraint type",
+        "labels": [
+          "Semantic",
+          "Formatting",
+          "Tool"
+        ],
+        "values": [
+          55,
+          25,
+          20
+        ],
+        "unit": "percent"
+      },
+      {
+        "name": "Presentation",
+        "labels": [
+          "Plain",
+          "Conditional",
+          "Example"
+        ],
+        "values": [
+          50,
+          30,
+          20
+        ],
+        "unit": "percent"
+      }
+    ]
+  }
+}

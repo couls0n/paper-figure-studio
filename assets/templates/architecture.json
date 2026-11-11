@@ -1,0 +1,80 @@
+{
+  "type": "architecture",
+  "title": "Runtime checking with an explicit feedback loop",
+  "width": 1000,
+  "data_status": "illustrative",
+  "data": {
+    "nodes": [
+      {
+        "id": "request",
+        "label": "User request",
+        "detail": "Task, constraints and intended outcome",
+        "row": 0,
+        "col": 0
+      },
+      {
+        "id": "agent",
+        "label": "Propose action",
+        "detail": "Agent produces a tool call",
+        "row": 0,
+        "col": 1,
+        "group": "runtime"
+      },
+      {
+        "id": "guard",
+        "label": "Check the action",
+        "detail": "Compare action and task constraints",
+        "row": 0,
+        "col": 2,
+        "group": "runtime"
+      },
+      {
+        "id": "tool",
+        "label": "Execute or block",
+        "detail": "Only permitted actions reach the environment",
+        "row": 1,
+        "col": 2,
+        "group": "runtime"
+      },
+      {
+        "id": "feedback",
+        "label": "Feedback",
+        "detail": "Explain a mismatch and request a revised action",
+        "row": 1,
+        "col": 1,
+        "group": "runtime"
+      }
+    ],
+    "edges": [
+      {
+        "from": "request",
+        "to": "agent"
+      },
+      {
+        "from": "agent",
+        "to": "guard"
+      },
+      {
+        "from": "guard",
+        "to": "tool",
+        "label": "decision"
+      },
+      {
+        "from": "tool",
+        "to": "feedback"
+      },
+      {
+        "from": "feedback",
+        "to": "agent",
+        "kind": "feedback"
+      }
+    ],
+    "groups": [
+      {
+        "id": "runtime",
+        "label": "Runtime boundary",
+        "color": "#EEF5FA"
+      }
+    ]
+  }
+}

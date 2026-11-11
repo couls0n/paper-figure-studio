@@ -1,0 +1,37 @@
+{
+  "type": "text_card",
+  "title": "A rule and its structured decision",
+  "width": 1000,
+  "data_status": "illustrative",
+  "data": {
+    "columns": 2,
+    "cards": [
+      {
+        "title": "Editable rule example",
+        "language": "dsl",
+        "line_numbers": true,
+        "content": "rule task_scope\nwhen proposed_action(action):\n    if not serves_task(action):\n        enforce block(action)\n    else:\n        return allow(action)",
+        "highlights": [
+          {
+            "line": 4,
+            "text": "block(action)",
+            "color": "#B33D42"
+          }
+        ]
+      },
+      {
+        "title": "Structured outcome example",
+        "language": "json",
+        "line_numbers": true,
+        "content": "{\n  \"decision\": \"blocked\",\n  \"reason\": \"Outside task scope\",\n  \"next_step\": \"Revise action\"\n}",
+        "highlights": [
+          {
+            "line": 2,
+            "text": "\"blocked\"",
+            "color": "#B33D42"
+          }
+        ]
+      }
+    ]
+  }
+}

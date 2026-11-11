@@ -1,0 +1,991 @@
+{
+  "description": "Semantic routing fixtures. Original natural-language requests plus reviewed structured intents. Unit tests validate dispatch from the intent, not the ability of an LLM to parse language. Independent request-only forward tests are still required.",
+  "cases": [
+    {
+      "id": "architecture_runtime",
+      "request": "画出用户、智能体、工具和守卫的运行闭环，标注拦截点和反馈。",
+      "intent": {
+        "schema_version": 1,
+        "request": "画出用户、智能体、工具和守卫的运行闭环，标注拦截点和反馈。",
+        "purpose": "explain_system",
+        "relationship": "directed_flow",
+        "evidence": "nodes_edges",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "architecture",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "architecture_en",
+      "request": "Show the offline training and online inference pipeline with its feedback loop.",
+      "intent": {
+        "schema_version": 1,
+        "request": "Show the offline training and online inference pipeline with its feedback loop.",
+        "purpose": "explain_system",
+        "relationship": "directed_flow",
+        "evidence": "nodes_edges",
+        "data_status": "ready",
+        "language": "en"
+      },
+      "expected": {
+        "primary_type": "architecture",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "architecture_time_word",
+      "request": "系统先检索，再规划，再执行；画它的流程，不是数值随时间变化。",
+      "intent": {
+        "schema_version": 1,
+        "request": "系统先检索，再规划，再执行；画它的流程，不是数值随时间变化。",
+        "purpose": "explain_system",
+        "relationship": "directed_flow",
+        "evidence": "nodes_edges",
+        "data_status": "ready",
+        "excluded_types": [
+          "line"
+        ]
+      },
+      "expected": {
+        "primary_type": "architecture",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "comparison_case",
+      "request": "把同一个用户请求在有防护和无防护下的对话结果并排，突出差异。",
+      "intent": {
+        "schema_version": 1,
+        "request": "把同一个用户请求在有防护和无防护下的对话结果并排，突出差异。",
+        "purpose": "compare_cases",
+        "relationship": "qualitative_contrast",
+        "evidence": "text_cases",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "comparison",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "comparison_en",
+      "request": "Compare the before and after code examples, highlighting only the changed instructions.",
+      "intent": {
+        "schema_version": 1,
+        "request": "Compare the before and after code examples, highlighting only the changed instructions.",
+        "purpose": "compare_cases",
+        "relationship": "qualitative_contrast",
+        "evidence": "text_code",
+        "data_status": "ready",
+        "language": "en"
+      },
+      "expected": {
+        "primary_type": "comparison",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "comparison_image_pairs",
+      "request": "把同一步骤的正常页面和异常页面放在左右两边做案例对照。",
+      "intent": {
+        "schema_version": 1,
+        "request": "把同一步骤的正常页面和异常页面放在左右两边做案例对照。",
+        "purpose": "compare_cases",
+        "relationship": "qualitative_contrast",
+        "evidence": "screenshots",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "comparison",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "trajectory_screenshots",
+      "request": "把这次运行的五步浏览器截图和每步动作按时间排出来，圈出第一次泄露。",
+      "intent": {
+        "schema_version": 1,
+        "request": "把这次运行的五步浏览器截图和每步动作按时间排出来，圈出第一次泄露。",
+        "purpose": "show_execution",
+        "relationship": "event_sequence",
+        "evidence": "screenshots",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "trajectory",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "trajectory_no_screenshot",
+      "request": "只有工具日志也行，按实际执行的步骤展示动作和返回结果。",
+      "intent": {
+        "schema_version": 1,
+        "request": "只有工具日志也行，按实际执行的步骤展示动作和返回结果。",
+        "purpose": "show_execution",
+        "relationship": "event_sequence",
+        "evidence": "step_records",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "trajectory",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "trajectory_en",
+      "request": "Create a timeline of the actual desktop screenshots, click actions and verdicts.",
+      "intent": {
+        "schema_version": 1,
+        "request": "Create a timeline of the actual desktop screenshots, click actions and verdicts.",
+        "purpose": "show_execution",
+        "relationship": "event_sequence",
+        "evidence": "screenshots",
+        "data_status": "ready",
+        "language": "en"
+      },
+      "expected": {
+        "primary_type": "trajectory",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "text_prompt",
+      "request": "把system prompt完整排成卡片，变量蓝色，规则红色。",
+      "intent": {
+        "schema_version": 1,
+        "request": "把system prompt完整排成卡片，变量蓝色，规则红色。",
+        "purpose": "present_text",
+        "relationship": "verbatim",
+        "evidence": "text_code",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "text_card",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "text_code",
+      "request": "把这段Python代码做成有行号的论文图，不执行它。",
+      "intent": {
+        "schema_version": 1,
+        "request": "把这段Python代码做成有行号的论文图，不执行它。",
+        "purpose": "present_text",
+        "relationship": "verbatim",
+        "evidence": "text_code",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "text_card",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "text_bnf",
+      "request": "排版下面的BNF语法，保留产生式和对齐。",
+      "intent": {
+        "schema_version": 1,
+        "request": "排版下面的BNF语法，保留产生式和对齐。",
+        "purpose": "present_text",
+        "relationship": "verbatim",
+        "evidence": "text_code",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "text_card",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "taxonomy_tree",
+      "request": "把风险类别和子类别画成父子树，线表示包含关系。",
+      "intent": {
+        "schema_version": 1,
+        "request": "把风险类别和子类别画成父子树，线表示包含关系。",
+        "purpose": "organize_categories",
+        "relationship": "hierarchy",
+        "evidence": "category_tree",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "taxonomy",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "taxonomy_mapping",
+      "request": "左边是记录字段，右边是对应定义，用线连接。",
+      "intent": {
+        "schema_version": 1,
+        "request": "左边是记录字段，右边是对应定义，用线连接。",
+        "purpose": "organize_categories",
+        "relationship": "category_mapping",
+        "evidence": "category_mapping",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "taxonomy",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "taxonomy_en",
+      "request": "Organize these policy categories into a hierarchy; branch sizes are not frequencies.",
+      "intent": {
+        "schema_version": 1,
+        "request": "Organize these policy categories into a hierarchy; branch sizes are not frequencies.",
+        "purpose": "organize_categories",
+        "relationship": "hierarchy",
+        "evidence": "nodes_edges",
+        "data_status": "ready",
+        "language": "en"
+      },
+      "expected": {
+        "primary_type": "taxonomy",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "proportion_single",
+      "request": "展示八种攻击方法在全部样本中各占多少。",
+      "intent": {
+        "schema_version": 1,
+        "request": "展示八种攻击方法在全部样本中各占多少。",
+        "purpose": "show_composition",
+        "relationship": "part_to_whole",
+        "evidence": "counts",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "proportion",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "proportion_independent_rings",
+      "request": "内环是约束类型占比，外环是呈现方式占比；两套独立分类，不是父子。",
+      "intent": {
+        "schema_version": 1,
+        "request": "内环是约束类型占比，外环是呈现方式占比；两套独立分类，不是父子。",
+        "purpose": "show_composition",
+        "relationship": "part_to_whole",
+        "evidence": "counts",
+        "data_status": "ready",
+        "semantic_notes": [
+          "independent marginal classifications; each ring has its own denominator"
+        ]
+      },
+      "expected": {
+        "primary_type": "proportion",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "proportion_no_pie",
+      "request": "展示各类占比，但不要饼图或环形图，用长度比较。",
+      "intent": {
+        "schema_version": 1,
+        "request": "展示各类占比，但不要饼图或环形图，用长度比较。",
+        "purpose": "show_composition",
+        "relationship": "part_to_whole",
+        "evidence": "counts",
+        "data_status": "ready",
+        "excluded_types": [
+          "proportion"
+        ]
+      },
+      "expected": {
+        "primary_type": "bar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "bar_rank",
+      "request": "比较五个模型准确率，按高到低排横条。",
+      "intent": {
+        "schema_version": 1,
+        "request": "比较五个模型准确率，按高到低排横条。",
+        "purpose": "compare_values",
+        "relationship": "category_magnitude",
+        "evidence": "category_values",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "bar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "bar_grouped",
+      "request": "比较三个方法在四个场景中的成功率。",
+      "intent": {
+        "schema_version": 1,
+        "request": "比较三个方法在四个场景中的成功率。",
+        "purpose": "compare_values",
+        "relationship": "category_magnitude",
+        "evidence": "category_values",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "bar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "bar_en",
+      "request": "Rank the six failure categories by their mean incidence, with standard-deviation error bars.",
+      "intent": {
+        "schema_version": 1,
+        "request": "Rank the six failure categories by their mean incidence, with standard-deviation error bars.",
+        "purpose": "compare_values",
+        "relationship": "category_magnitude",
+        "evidence": "category_values",
+        "data_status": "ready",
+        "language": "en"
+      },
+      "expected": {
+        "primary_type": "bar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "bar_explicit_profile",
+      "request": "这组多维指标不要雷达图，我明确要用分组柱状图比较。",
+      "intent": {
+        "schema_version": 1,
+        "request": "这组多维指标不要雷达图，我明确要用分组柱状图比较。",
+        "purpose": "compare_profiles",
+        "relationship": "profile",
+        "evidence": "metric_profiles",
+        "data_status": "ready",
+        "explicit_type": "bar",
+        "excluded_types": [
+          "radar"
+        ]
+      },
+      "expected": {
+        "primary_type": "bar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "line_steps",
+      "request": "画最大执行步数15、30、60对成功率的影响，x保持真实间距。",
+      "intent": {
+        "schema_version": 1,
+        "request": "画最大执行步数15、30、60对成功率的影响，x保持真实间距。",
+        "purpose": "show_change",
+        "relationship": "ordered_numeric",
+        "evidence": "ordered_values",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "line",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "line_iteration",
+      "request": "展示优化0至20轮损失如何变化，带上重复运行的不确定性。",
+      "intent": {
+        "schema_version": 1,
+        "request": "展示优化0至20轮损失如何变化，带上重复运行的不确定性。",
+        "purpose": "show_change",
+        "relationship": "ordered_numeric",
+        "evidence": "ordered_values",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "line",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "line_missing_data",
+      "request": "我还没有实验值，先按检索数量增加时的准确率趋势确定图型。",
+      "intent": {
+        "schema_version": 1,
+        "request": "我还没有实验值，先按检索数量增加时的准确率趋势确定图型。",
+        "purpose": "show_change",
+        "relationship": "ordered_numeric",
+        "evidence": "unknown",
+        "data_status": "missing"
+      },
+      "expected": {
+        "primary_type": "line",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "matrix_transfer",
+      "request": "行是源模型，列是目标模型，用颜色和数字显示迁移成功率。",
+      "intent": {
+        "schema_version": 1,
+        "request": "行是源模型，列是目标模型，用颜色和数字显示迁移成功率。",
+        "purpose": "show_pairwise_values",
+        "relationship": "matrix",
+        "evidence": "matrix",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "matrix",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "matrix_confusion",
+      "request": "画一位评估者的混淆矩阵，每个单元是平均计数，不是百分比。",
+      "intent": {
+        "schema_version": 1,
+        "request": "画一位评估者的混淆矩阵，每个单元是平均计数，不是百分比。",
+        "purpose": "show_pairwise_values",
+        "relationship": "matrix",
+        "evidence": "matrix",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "matrix",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "matrix_correlation",
+      "request": "显示模型在相同任务上失败标签之间的相关性。",
+      "intent": {
+        "schema_version": 1,
+        "request": "显示模型在相同任务上失败标签之间的相关性。",
+        "purpose": "show_pairwise_values",
+        "relationship": "matrix",
+        "evidence": "matrix",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "matrix",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "scatter_tradeoff",
+      "request": "横轴任务效用，纵轴攻击成功率，每个点是一种防御，越右下越好。",
+      "intent": {
+        "schema_version": 1,
+        "request": "横轴任务效用，纵轴攻击成功率，每个点是一种防御，越右下越好。",
+        "purpose": "show_relationship",
+        "relationship": "coordinate",
+        "evidence": "point_coordinates",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "scatter",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "scatter_paired",
+      "request": "同一方法攻击前后的效用位置用箭头连接，攻击成功率为纵轴。",
+      "intent": {
+        "schema_version": 1,
+        "request": "同一方法攻击前后的效用位置用箭头连接，攻击成功率为纵轴。",
+        "purpose": "show_relationship",
+        "relationship": "coordinate",
+        "evidence": "point_coordinates",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "scatter",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "scatter_embedding",
+      "request": "我已经有二维投影坐标，展示正常与触发样本的点云分离。",
+      "intent": {
+        "schema_version": 1,
+        "request": "我已经有二维投影坐标，展示正常与触发样本的点云分离。",
+        "purpose": "show_relationship",
+        "relationship": "coordinate",
+        "evidence": "point_coordinates",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "scatter",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "distribution_density",
+      "request": "比较正常查询和攻击查询的困惑度分布，显示密度曲线。",
+      "intent": {
+        "schema_version": 1,
+        "request": "比较正常查询和攻击查询的困惑度分布，显示密度曲线。",
+        "purpose": "show_distribution",
+        "relationship": "sample_distribution",
+        "evidence": "raw_samples",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "distribution",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "distribution_hist",
+      "request": "画任务长度的直方图，长尾用对数坐标处理。",
+      "intent": {
+        "schema_version": 1,
+        "request": "画任务长度的直方图，长尾用对数坐标处理。",
+        "purpose": "show_distribution",
+        "relationship": "sample_distribution",
+        "evidence": "raw_samples",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "distribution",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "distribution_en",
+      "request": "Compare the distribution of latency samples, not a timeline of the measurements.",
+      "intent": {
+        "schema_version": 1,
+        "request": "Compare the distribution of latency samples, not a timeline of the measurements.",
+        "purpose": "show_distribution",
+        "relationship": "sample_distribution",
+        "evidence": "raw_samples",
+        "data_status": "ready",
+        "language": "en",
+        "excluded_types": [
+          "line"
+        ]
+      },
+      "expected": {
+        "primary_type": "distribution",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "radar_profile",
+      "request": "看四个方法在八种风险上的整体表现轮廓，统一指标顺序和量程。",
+      "intent": {
+        "schema_version": 1,
+        "request": "看四个方法在八种风险上的整体表现轮廓，统一指标顺序和量程。",
+        "purpose": "compare_profiles",
+        "relationship": "profile",
+        "evidence": "metric_profiles",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "radar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "radar_explicit",
+      "request": "请用雷达图。数据随后给。",
+      "intent": {
+        "schema_version": 1,
+        "request": "请用雷达图。数据随后给。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "missing",
+        "explicit_type": "radar"
+      },
+      "expected": {
+        "primary_type": "radar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "ambiguous_compare",
+      "request": "画个图比较这几个东西。",
+      "intent": {
+        "schema_version": 1,
+        "request": "画个图比较这几个东西。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "ambiguous_graph",
+      "request": "有一组节点和边，帮我画出来。",
+      "intent": {
+        "schema_version": 1,
+        "request": "有一组节点和边，帮我画出来。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "nodes_edges",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "ambiguous_numbers",
+      "request": "这些类别后面都有一个数字，帮我可视化。",
+      "intent": {
+        "schema_version": 1,
+        "request": "这些类别后面都有一个数字，帮我可视化。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "category_values",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "explicit_conflict",
+      "request": "我要饼图，但这里的边表示父类和子类，没有任何比例。",
+      "intent": {
+        "schema_version": 1,
+        "request": "我要饼图，但这里的边表示父类和子类，没有任何比例。",
+        "purpose": "organize_categories",
+        "relationship": "hierarchy",
+        "evidence": "category_tree",
+        "data_status": "ready",
+        "explicit_type": "proportion"
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "explicit_negation_conflict",
+      "request": "用雷达图，但不要雷达图。",
+      "intent": {
+        "schema_version": 1,
+        "request": "用雷达图，但不要雷达图。",
+        "purpose": "compare_profiles",
+        "relationship": "profile",
+        "evidence": "metric_profiles",
+        "data_status": "ready",
+        "explicit_type": "radar",
+        "excluded_types": [
+          "radar"
+        ]
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "semantic_conflict",
+      "request": "我想看方法排名，又想看变量之间的相关形状。",
+      "intent": {
+        "schema_version": 1,
+        "request": "我想看方法排名，又想看变量之间的相关形状。",
+        "purpose": "compare_values",
+        "relationship": "coordinate",
+        "evidence": "point_coordinates",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "evidence_conflict",
+      "request": "画数值趋势，但当前解析的材料只有截图而没有数值。",
+      "intent": {
+        "schema_version": 1,
+        "request": "画数值趋势，但当前解析的材料只有截图而没有数值。",
+        "purpose": "show_change",
+        "relationship": "ordered_numeric",
+        "evidence": "screenshots",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "matrix_shape_only",
+      "request": "把这个二维数值矩阵可视化。",
+      "intent": {
+        "schema_version": 1,
+        "request": "把这个二维数值矩阵可视化。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "matrix",
+        "data_status": "ready"
+      },
+      "expected": {
+        "primary_type": "matrix",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "radar_excluded_ambiguous",
+      "request": "比较各方法的多维轮廓，但不要雷达图。",
+      "intent": {
+        "schema_version": 1,
+        "request": "比较各方法的多维轮廓，但不要雷达图。",
+        "purpose": "compare_profiles",
+        "relationship": "profile",
+        "evidence": "metric_profiles",
+        "data_status": "ready",
+        "excluded_types": [
+          "radar"
+        ]
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "explicit_no_data",
+      "request": "请画带误差条的横向柱状图，数值下次给。",
+      "intent": {
+        "schema_version": 1,
+        "request": "请画带误差条的横向柱状图，数值下次给。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "missing",
+        "explicit_type": "bar"
+      },
+      "expected": {
+        "primary_type": "bar",
+        "needs_clarification": false
+      }
+    },
+    {
+      "id": "mixed_architecture_bar",
+      "request": "左边方法架构，右边方法在四场景的结果，用a/b面板拼成一张图。",
+      "intent": {
+        "schema_version": 1,
+        "request": "左边方法架构，右边方法在四场景的结果，用a/b面板拼成一张图。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "ready",
+        "composition": true,
+        "panels": [
+          {
+            "id": "a",
+            "intent": {
+              "purpose": "explain_system",
+              "relationship": "directed_flow",
+              "evidence": "nodes_edges",
+              "data_status": "ready"
+            }
+          },
+          {
+            "id": "b",
+            "intent": {
+              "purpose": "compare_values",
+              "relationship": "category_magnitude",
+              "evidence": "category_values",
+              "data_status": "ready"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "primary_type": "multipanel",
+        "needs_clarification": false,
+        "panel_types": [
+          "architecture",
+          "bar"
+        ]
+      }
+    },
+    {
+      "id": "mixed_missing_data",
+      "request": "a面板已有流程，b面板要画安全效用关系但数据还没给。",
+      "intent": {
+        "schema_version": 1,
+        "request": "a面板已有流程，b面板要画安全效用关系但数据还没给。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "ready",
+        "composition": true,
+        "panels": [
+          {
+            "id": "a",
+            "intent": {
+              "purpose": "explain_system",
+              "relationship": "directed_flow",
+              "evidence": "nodes_edges",
+              "data_status": "ready"
+            }
+          },
+          {
+            "id": "b",
+            "intent": {
+              "purpose": "show_relationship",
+              "relationship": "coordinate",
+              "evidence": "unknown",
+              "data_status": "missing"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "primary_type": "multipanel",
+        "needs_clarification": false,
+        "panel_types": [
+          "architecture",
+          "scatter"
+        ]
+      }
+    },
+    {
+      "id": "mixed_ambiguous_panel",
+      "request": "a画系统流程，b画一个好看的结果图，具体关系不清楚。",
+      "intent": {
+        "schema_version": 1,
+        "request": "a画系统流程，b画一个好看的结果图，具体关系不清楚。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "ready",
+        "composition": true,
+        "panels": [
+          {
+            "id": "a",
+            "intent": {
+              "purpose": "explain_system",
+              "relationship": "directed_flow",
+              "evidence": "nodes_edges",
+              "data_status": "ready"
+            }
+          },
+          {
+            "id": "b",
+            "intent": {
+              "request": "一个好看的结果图",
+              "data_status": "missing"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "primary_type": "multipanel",
+        "needs_clarification": true,
+        "panel_types": [
+          "architecture",
+          null
+        ]
+      }
+    },
+    {
+      "id": "compose_without_panels",
+      "request": "帮我做一个多面板图。",
+      "intent": {
+        "schema_version": 1,
+        "request": "帮我做一个多面板图。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "ready",
+        "composition": true
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "single_vs_compose",
+      "request": "只要一张折线图，但又要求a架构b热图两个面板。",
+      "intent": {
+        "schema_version": 1,
+        "request": "只要一张折线图，但又要求a架构b热图两个面板。",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "ready",
+        "explicit_type": "line",
+        "composition": true,
+        "panels": [
+          {
+            "id": "a",
+            "intent": {
+              "purpose": "explain_system",
+              "relationship": "directed_flow",
+              "evidence": "nodes_edges",
+              "data_status": "ready"
+            }
+          },
+          {
+            "id": "b",
+            "intent": {
+              "purpose": "compare_values",
+              "relationship": "category_magnitude",
+              "evidence": "category_values",
+              "data_status": "ready"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "primary_type": null,
+        "needs_clarification": true
+      }
+    },
+    {
+      "id": "multipanel_en",
+      "request": "Put a latency distribution on the left and a utility-risk scatterplot on the right.",
+      "intent": {
+        "schema_version": 1,
+        "request": "Put a latency distribution on the left and a utility-risk scatterplot on the right.",
+        "purpose": "unknown",
+        "relationship": "unknown",
+        "evidence": "unknown",
+        "data_status": "ready",
+        "language": "en",
+        "composition": true,
+        "panels": [
+          {
+            "id": "a",
+            "intent": {
+              "purpose": "show_distribution",
+              "relationship": "sample_distribution",
+              "evidence": "raw_samples",
+              "data_status": "ready"
+            }
+          },
+          {
+            "id": "b",
+            "intent": {
+              "purpose": "show_relationship",
+              "relationship": "coordinate",
+              "evidence": "point_coordinates",
+              "data_status": "ready"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "primary_type": "multipanel",
+        "needs_clarification": false,
+        "panel_types": [
+          "distribution",
+          "scatter"
+        ]
+      }
+    }
+  ]
+}
