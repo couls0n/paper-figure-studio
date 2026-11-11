@@ -21,7 +21,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 ```
 
-需要有该私有仓库的读取权限。已在其他目录维护仓库时，也可将该目录链接到 `~/.codex/skills/paper-figure-studio`。使用 Python 3.10 或更新版本；本仓库在 Python 3.12 上验证。需要复现本次验证环境时，在 Python 3.12 虚拟环境中安装 [requirements-lock.txt](requirements-lock.txt)。
+这是公开仓库，无需登录 GitHub 即可访问和克隆。已在其他目录维护仓库时，也可将该目录链接到 `~/.codex/skills/paper-figure-studio`。使用 Python 3.10 或更新版本；本仓库在 Python 3.12 上验证。需要复现本次验证环境时，在 Python 3.12 虚拟环境中安装 [requirements-lock.txt](requirements-lock.txt)。
 
 在对话中调用：
 
