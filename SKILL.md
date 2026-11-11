@@ -1,7 +1,8 @@
 ---
 name: paper-figure-studio
 description: >-
-  Understand the user's scientific communication intent and route to 12 reusable figure
+  Create scientific figures with paper-matched case-study, workflow and execution-trace
+  archetypes. Understand the user's communication intent and route to 12 reusable figure
   families: architecture, comparison, screenshot trajectory, text/code card, taxonomy,
   proportion, bar, line, matrix, scatter, distribution, and radar; compose heterogeneous
   multi-panel figures. Use for 论文绘图、方法框架图、案例轨迹、提示词/代码图、实验图、
@@ -11,6 +12,8 @@ description: >-
 # Paper Figure Studio
 
 Turn the user's intended message and supplied evidence into the right figure, then render editable objects. The reusable unit is a semantic specification plus a drawing template, not a screenshot of a finished paper figure.
+
+**Priority: paper-like case studies, method workflows and execution traces.** For these three families, choosing the correct chart type is only the first decision. Match the visual grammar of a relevant surveyed figure: narrative layout, object types, information density, typography, semantic colour and evidence placement. Use the paper profiles and [style selection](references/style-selection.md) before drawing. A common palette alone does not establish a style match.
 
 ## 1. Route the intent before drawing
 
@@ -53,6 +56,8 @@ The complete schema, competing-case examples and clarification behavior live in 
 
 Read [figure-spec.md](references/figure-spec.md) for the shared interface. Templates are runnable starting points, not compulsory layouts. The 12 types also permit reasonable variants described in their recipes. Adapt the implementation when a scientific relationship needs a variant beyond the bundled baseline; do not silently substitute a different plot. If the user supplies a preferred plotting language/workflow, honor it while retaining these routing and evidence checks. The bundled implementation uses Python for data plots and editable SVG for schematics.
 
+For `comparison`, `architecture`, and `trajectory`, read the route's `style_reference` as well. Select a concrete source figure and a compatible layout variant, then record `style_reference` in the figure spec. The default templates use `paper_case`, `paper_flow`, and `paper_trace`; they preserve different paper traditions rather than putting every figure into the same card layout. User-supplied visual references take precedence. Inspect that image when available; if only the bundled profile is available, describe the result as profile-based adaptation, not a verified match to an unseen source.
+
 ## 3. Build a reviewable specification
 
 - Preserve the user's message, variables, cases, steps, model names, requested panels and important relationships.
@@ -76,5 +81,7 @@ The command keeps editable SVG, exports PDF and PNG, and writes rendering metada
 For multi-panel requests, route every panel first, then use the layout described in [composition.md](references/composition.md). Preserve shared category/colour meanings, align comparable plot areas, check final-size text and avoid shrinking a long prompt into unreadable text merely to fit a grid. Separate pages are acceptable when the user wants the content and a single page cannot remain readable.
 
 Inspect the exported full figure and each panel using image/PDF viewing tools. Check content coverage, arrow endpoints, line wrapping, glyphs, legends, axis units, mask and error semantics, screenshot callout coordinates, panel labels and final-size readability. Fix actual problems and rerender. Use the optional existing scientific-figure QA tools when available; this skill remains self-contained without another installed skill.
+
+For the three priority families, also place the source figure and result at comparable display widths and check the dimensions in [the style review](references/style-selection.md#visual-review). A valid SVG or passed geometry test is not evidence of paper-like taste. Correct visual mismatch before delivery; do not report a numerical similarity score without a defined measurement.
 
 Deliver the figure, editable source and input specification, with a short statement of what it conveys and any material source-data approximation. Do not claim an unperformed scientific validation or exact reproduction when only the layout has been reproduced.

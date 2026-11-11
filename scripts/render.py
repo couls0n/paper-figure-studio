@@ -93,6 +93,8 @@ def export(spec, out, formats=('svg', 'png', 'pdf'), scale=2):
         doc.close()
     metadata = {'type': spec['type'], 'data_status': spec['data_status'], 'title': spec.get('title', ''),
                 'outputs': outputs, 'editable_source': str(svg_path), 'layout': layout,
+                'style_profile': spec.get('style', {}).get('profile'),
+                'style_reference': spec.get('style_reference'),
                 'visual_review_required': True}
     out.with_suffix('.render.json').write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding='utf-8')
     return metadata

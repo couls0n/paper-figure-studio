@@ -1,12 +1,8 @@
 # 可复用模板图集
 
-所有内容均为示例；每张图都对应可编辑JSON规格与SVG。
+优先展示案例、流程、执行轨迹的六种论文范式。所有内容均为示例；每张图都有可编辑 JSON 规格与 SVG。
 
-## architecture
-
-![architecture](../assets/previews/architecture.png)
-
-[可编辑 SVG](../assets/previews/architecture.svg) · [JSON 规格](../assets/templates/architecture.json)
+[风格选择方法](../references/style-selection.md) · [原图对照审查](taste-independent-review.md)
 
 ## comparison
 
@@ -14,11 +10,35 @@
 
 [可编辑 SVG](../assets/previews/comparison.svg) · [JSON 规格](../assets/templates/comparison.json)
 
+## comparison_scenarios
+
+![comparison_scenarios](../assets/previews/comparison_scenarios.png)
+
+[可编辑 SVG](../assets/previews/comparison_scenarios.svg) · [JSON 规格](../assets/templates/comparison_scenarios.json)
+
+## architecture
+
+![architecture](../assets/previews/architecture.png)
+
+[可编辑 SVG](../assets/previews/architecture.svg) · [JSON 规格](../assets/templates/architecture.json)
+
+## architecture_stages
+
+![architecture_stages](../assets/previews/architecture_stages.png)
+
+[可编辑 SVG](../assets/previews/architecture_stages.svg) · [JSON 规格](../assets/templates/architecture_stages.json)
+
 ## trajectory
 
 ![trajectory](../assets/previews/trajectory.png)
 
 [可编辑 SVG](../assets/previews/trajectory.svg) · [JSON 规格](../assets/templates/trajectory.json)
+
+## trajectory_annotated
+
+![trajectory_annotated](../assets/previews/trajectory_annotated.png)
+
+[可编辑 SVG](../assets/previews/trajectory_annotated.svg) · [JSON 规格](../assets/templates/trajectory_annotated.json)
 
 ## text_card
 

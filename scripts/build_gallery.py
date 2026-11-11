@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Render the twelve demonstration templates and two composition examples."""
+"""Render twelve families, paper-style variants and composition examples."""
 import argparse
 import json
 from pathlib import Path
 from render import load_spec, export
 
 ORDER=['architecture','comparison','trajectory','text_card','taxonomy','proportion','bar','line','matrix','scatter','distribution','radar','multipanel','multipanel_28']
+VARIANTS=['architecture_stages','comparison_scenarios','trajectory_annotated']
 ROOT=Path(__file__).resolve().parents[1]
 
 def make_atlas(target):
@@ -24,6 +25,24 @@ def make_atlas(target):
             sheet.paste(thumb, (x+(600-thumb.width)//2, y+58+(335-thumb.height)//2))
     sheet.save(target/'atlas.png')
 
+def make_priority_atlas(target):
+    from PIL import Image, ImageDraw, ImageFont
+    names = [('comparison', 'Case study · style reference: TAI3 Figure 1'),
+             ('architecture_stages', 'Method workflow · style reference: TAI3 Figure 3'),
+             ('trajectory', 'Execution trace · style reference: AgentDAM Figure 2')]
+    frames = []
+    for name, label in names:
+        with Image.open(target/f'{name}.png') as source:
+            thumb = source.convert('RGB')
+            thumb.thumbnail((1440, 780), Image.Resampling.LANCZOS)
+            frames.append((thumb, label))
+    sheet = Image.new('RGB', (1500, sum(im.height+70 for im, label in frames)+20), 'white')
+    draw=ImageDraw.Draw(sheet); font=ImageFont.load_default(size=22); y=16
+    for im, label in frames:
+        draw.text((30,y),label,fill='#333333',font=font)
+        sheet.paste(im,((1500-im.width)//2,y+38));y+=im.height+70
+    sheet.save(target/'priority-atlas.png')
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--out',default=str(ROOT/'output/gallery'))
@@ -32,17 +51,18 @@ def main():
     target=Path(args.out)
     target.mkdir(parents=True,exist_ok=True)
     report=[]
-    for name in ORDER:
+    for name in ORDER+VARIANTS:
         path=ROOT/'assets/templates'/f'{name}.json'
         meta=export(load_spec(path),target/name,tuple(args.formats.split(',')),scale=1.5)
         report.append({'template':name,'type':meta['type'],'files':meta['outputs']})
         print(f'{name}: rendered',flush=True)
     (target/'manifest.json').write_text(json.dumps(report,indent=2))
     lines=['# Template gallery','','All values, cases and interface sketches below are illustrative. Every figure is generated from an editable JSON specification.','']
-    for name in ORDER:
+    for name in ORDER+VARIANTS:
         lines.extend([f'## {name}',f'![{name}]({name}.png)',f'[Editable SVG]({name}.svg) · [PDF]({name}.pdf)',''])
     (target/'GALLERY.md').write_text('\n'.join(lines))
     if 'png' in args.formats.split(','):
         make_atlas(target)
+        make_priority_atlas(target)
 
 if __name__=='__main__':main()

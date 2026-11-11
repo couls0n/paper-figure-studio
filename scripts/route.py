@@ -17,6 +17,11 @@ TYPES = (
     "architecture", "comparison", "trajectory", "text_card", "taxonomy",
     "proportion", "bar", "line", "matrix", "scatter", "distribution", "radar",
 )
+STYLE_PROFILES = {
+    'comparison': ('paper_case', 'references/style/case-study.md'),
+    'architecture': ('paper_flow', 'references/style/workflow.md'),
+    'trajectory': ('paper_trace', 'references/style/execution-trace.md'),
+}
 PURPOSE_TO_TYPE = {
     "explain_system": "architecture",
     "compare_cases": "comparison",
@@ -187,6 +192,9 @@ def _finish(result: dict, intent: dict, chart: str, confidence: str) -> dict:
     result["confidence"] = confidence
     result["template"] = f"assets/templates/{chart}.json"
     result["reference"] = f"references/types/{chart}.md"
+    if chart in STYLE_PROFILES:
+        result['style_profile'], result['style_reference'] = STYLE_PROFILES[chart]
+        result['style_selection'] = 'references/style-selection.md'
     missing = list(intent.get("missing_inputs", []))
     if intent.get("data_status", "missing") != "ready" and not missing:
         missing.append(REQUIRED[chart][1 if intent.get("language") == "en" else 0])

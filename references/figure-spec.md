@@ -21,6 +21,8 @@ The semantic `intent` used for routing and the geometry/data `spec` used for ren
 - `data`: type-specific schema in the matching recipe. Only copy values you actually have. The renderer validates concrete invariants such as dimensions; it cannot independently prove provenance.
 - `source`: optional user-facing source reference. Prefer a stable file or paper locator. Do not add credentials or unrelated private filesystem details.
 - `style`: type-specific optional styles; the recipe lists supported keys. Changing style does not change data semantics.
+- `style.profile`: the three priority families use `paper_case` (comparison), `paper_flow` (architecture), or `paper_trace` (trajectory). A profile from a different family is rejected. Existing schematic specs without a profile retain the earlier baseline renderer; start new work from the updated paper-profile templates.
+- `style_reference`: optional paper/figure/page plus visual features to preserve and intentional adaptations. It records visual provenance, independently of the content/data `source`; see [style-selection.md](style-selection.md). The export metadata retains this reference.
 
 Keep the edited JSON beside deliverables. Templates intentionally contain illustrative values and visible demo labels. For a real figure replace the data and text together, then set `data_status`; do not merely remove the word “illustrative”.
 

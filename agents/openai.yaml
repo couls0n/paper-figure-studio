@@ -1,4 +1,4 @@
 interface:
   display_name: "Paper Figure Studio"
-  short_description: "意图路由驱动的论文绘图：12类可复用模板、可编辑矢量图与多面板组合"
-  default_prompt: "使用 $paper-figure-studio 理解我的表达意图和已有材料，选择正确图型并生成可编辑的论文图。"
+  short_description: "意图与论文风格双重路由：重点强化案例、流程和执行轨迹，支持12类图与多面板"
+  default_prompt: "使用 $paper-figure-studio 理解我的表达意图和已有材料，选择正确图型与论文视觉范式，生成可编辑的论文图。"

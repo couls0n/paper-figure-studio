@@ -10,6 +10,7 @@
 4. **形成 `intent.json`。** 使用下表的字段；证据不足时填 `unknown`，不要为了得到一个路由而猜。每个判断都应能指向用户原话、输入列或参考图内容。
 5. **运行路由并审查结果。** 若出现冲突，先检查是不是自己把用户意图解析错了；能从现有材料修正时直接修正。只有仍存在实质歧义时才问用户一个简短问题。
 6. **只加载选中的类型方法与模板。** 按返回的 `reference` 阅读具体画法，以 `template` 为起点填写真实内容。多面板读取每个子面板参考文件和 [组合方法](composition.md)。
+7. **三类重点图继续选择视觉范式。** 案例、流程、执行轨迹的结果额外返回 `style_profile`、`style_reference` 与 `style_selection`。阅读 [风格选择协议](style-selection.md)，根据叙事和证据选择本类变体及论文原图锚点。图意选对并不代表图的视觉风格已经匹配。
 
 ```bash
 python scripts/route.py --intent intent.json --out route.json

@@ -27,7 +27,7 @@ class SchematicTests(unittest.TestCase):
                 svg=render_schematic(template(kind));root=ET.fromstring(svg)
                 self.assertEqual(root.tag,'{http://www.w3.org/2000/svg}svg')
                 self.assertGreater(float(root.get('height')),100)
-                self.assertIn('ILLUSTRATIVE EXAMPLE',text_of(svg))
+                self.assertIn('ILLUSTRATIVE',text_of(svg))
                 self.assertGreater(len(root.findall('.//{http://www.w3.org/2000/svg}text')),3)
     def test_graph_validation_and_variable_nodes(self):
         spec=template('architecture');spec['data']['edges'][0]['to']='missing'

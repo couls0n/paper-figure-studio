@@ -1,48 +1,87 @@
 {
   "type": "architecture",
-  "title": "Runtime checking with an explicit feedback loop",
-  "width": 1000,
+  "width": 1320,
   "data_status": "illustrative",
+  "source": "Original illustrative workflow; visual grammar adapted from Task Shield Figures 1–2 and TAI3 Figure 3.",
+  "style": {
+    "profile": "paper_flow"
+  },
+  "title": "Task-aligned execution with semantic feedback",
   "data": {
+    "variant": "runtime",
     "nodes": [
       {
         "id": "request",
         "label": "User request",
-        "detail": "Task, constraints and intended outcome",
+        "detail": "Goal and constraints",
+        "kind": "document",
         "row": 0,
         "col": 0
       },
       {
         "id": "agent",
-        "label": "Propose action",
-        "detail": "Agent produces a tool call",
+        "label": "LLM agent",
+        "detail": "Proposed tool call",
+        "kind": "model",
+        "color": "#E4EDDA",
         "row": 0,
         "col": 1,
-        "group": "runtime"
+        "group": "agent_loop"
       },
       {
-        "id": "guard",
-        "label": "Check the action",
-        "detail": "Compare action and task constraints",
-        "row": 0,
-        "col": 2,
-        "group": "runtime"
-      },
-      {
-        "id": "tool",
-        "label": "Execute or block",
-        "detail": "Only permitted actions reach the environment",
+        "id": "check",
+        "label": "Alignment check",
+        "detail": "Does the action serve\nthe user task?",
+        "kind": "process",
+        "color": "#F7DFC8",
         "row": 1,
-        "col": 2,
-        "group": "runtime"
+        "col": 1,
+        "group": "agent_loop"
+      },
+      {
+        "id": "environment",
+        "label": "Environment",
+        "detail": "Untrusted page content",
+        "kind": "environment",
+        "row": 0,
+        "col": 3,
+        "group": "external"
+      },
+      {
+        "id": "tasks",
+        "label": "Task memory",
+        "detail": "Extracted instructions",
+        "kind": "memory",
+        "row": 1,
+        "col": 0
       },
       {
         "id": "feedback",
-        "label": "Feedback",
-        "detail": "Explain a mismatch and request a revised action",
+        "label": "Rethink the action",
+        "detail": "Explain the mismatch;\nrevise the proposal",
+        "kind": "process",
+        "color": "#F3DAD7",
+        "row": 0,
+        "col": 2,
+        "group": "agent_loop"
+      },
+      {
+        "id": "execute",
+        "label": "Tool execution",
+        "detail": "Permitted action only",
+        "kind": "tool",
         "row": 1,
-        "col": 1,
-        "group": "runtime"
+        "col": 2,
+        "group": "agent_loop"
+      },
+      {
+        "id": "result",
+        "label": "Tool response",
+        "detail": "Relevant + injected text",
+        "kind": "document",
+        "row": 1,
+        "col": 3,
+        "group": "external"
       }
     ],
     "edges": [
@@ -51,30 +90,99 @@
         "to": "agent"
       },
       {
+        "from": "request",
+        "to": "tasks",
+        "label": "extract"
+      },
+      {
         "from": "agent",
-        "to": "guard"
+        "to": "check",
+        "label": "tool call"
       },
       {
-        "from": "guard",
-        "to": "tool",
-        "label": "decision"
+        "from": "tasks",
+        "to": "check",
+        "label": "task context",
+        "semantic": "retrieve"
       },
       {
-        "from": "tool",
-        "to": "feedback"
+        "from": "check",
+        "to": "execute",
+        "label": "aligned",
+        "semantic": "allow"
+      },
+      {
+        "from": "execute",
+        "to": "result"
+      },
+      {
+        "from": "environment",
+        "to": "result"
+      },
+      {
+        "from": "check",
+        "to": "feedback",
+        "label": "mismatch",
+        "kind": "feedback",
+        "semantic": "reject",
+        "from_port": "right",
+        "to_port": "bottom"
       },
       {
         "from": "feedback",
         "to": "agent",
-        "kind": "feedback"
+        "kind": "feedback",
+        "semantic": "reject",
+        "from_port": "left",
+        "to_port": "right"
       }
     ],
     "groups": [
       {
-        "id": "runtime",
-        "label": "Runtime boundary",
-        "color": "#EEF5FA"
+        "id": "agent_loop",
+        "label": "Task-aware agent loop",
+        "color": "#F8F8F6"
+      },
+      {
+        "id": "external",
+        "label": "External environment",
+        "color": "#F5F5F5"
       }
+    ],
+    "legend": [
+      {
+        "semantic": "flow",
+        "label": "information flow"
+      },
+      {
+        "semantic": "allow",
+        "label": "aligned action"
+      },
+      {
+        "semantic": "reject",
+        "label": "feedback / revision"
+      },
+      {
+        "semantic": "retrieve",
+        "label": "task context"
+      }
+    ]
+  },
+  "style_reference": {
+    "paper": "The Task Shield",
+    "figure": "Figure 1",
+    "page": 2,
+    "preserve": [
+      "object-centred nodes with small vector icons",
+      "limited pastel semantic fills",
+      "thin black information arrows and reserved red/green semantics",
+      "compact functional regions with explicit feedback"
+    ],
+    "adapt": [
+      "Original task-alignment content replaces source examples",
+      "Hand-drawn SVG glyphs replace paper-specific or branded icons",
+      "Canvas and labels fit the new module count",
+      "Shows pre-action authorization checking only; does not claim to reproduce the complete tool-response checking chain of Task Shield."
     ]
   }
 }

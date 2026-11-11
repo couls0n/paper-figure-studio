@@ -4,7 +4,11 @@
 
 覆盖 12 类图，每类包含可运行 JSON 模板、数据约束、具体画法和检查方法。支持异构多面板、跨行跨列、宽高权重，以及 7×4 的 28 面板示例。
 
-![12 类模板总览](assets/previews/atlas.png)
+**重点强化案例图、流程图和执行轨迹图的论文风格。** 三类分别匹配 TAI3/BadAgent 的成对案例、TAI3/Task Shield 的方法流程，以及 AgentDAM/ShieldAgent 的执行证据版式。风格包含叙事布局、对象形态、信息密度、字体、颜色和标注，具体见 [论文视觉范式](references/style-selection.md)。
+
+![重点三类论文图范式](assets/previews/priority-atlas.png)
+
+[查看 12 类总览](assets/previews/atlas.png) · [论文风格对照审查](docs/taste-independent-review.md)
 
 ## 使用
 
@@ -27,7 +31,7 @@ python3 -m venv .venv
 
 ## 意图怎样路由
 
-`用户原话与材料 → 表达目的 / 关系 / 证据结构 / 明确偏好 → 每面板路由 → 对应方法与模板 → 绘制和检查`
+`用户原话与材料 → 表达目的 / 关系 / 证据结构 / 明确偏好 → 每面板图型路由 → 论文视觉范式与变体 → 对应模板 → 绘制和源图对照检查`
 
 语义理解由使用 skill 的代理完成，`scripts/route.py` 校验结构化意图并派发模板。它保留否定和明确指定，发现冲突时返回澄清问题；材料缺失时保留已确定的图型并列出缺项。多面板逐项路由。
 

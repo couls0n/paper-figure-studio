@@ -580,4 +580,16 @@ def taxonomy(spec):
 def render_schematic(spec:dict)->str:
     if not isinstance(spec,dict) or spec.get('type') not in TYPES:raise ValueError(f'Schematic type must be one of {sorted(TYPES)}')
     if not isinstance(spec.get('data'),dict):raise ValueError('spec.data must be an object')
+    profile = spec.get('style', {}).get('profile', 'classic')
+    paper_profiles = {'paper_case': ('comparison', 'paper_comparison'),
+                      'paper_flow': ('architecture', 'paper_architecture'),
+                      'paper_trace': ('trajectory', 'paper_trajectory')}
+    if profile in paper_profiles:
+        kind, module = paper_profiles[profile]
+        if spec['type'] != kind:
+            raise ValueError(f'style.profile={profile} belongs to {kind}, not {spec["type"]}')
+        from importlib import import_module
+        return import_module(module).render(spec)
+    if profile != 'classic':
+        raise ValueError(f'Unknown schematic style.profile: {profile}')
     return globals()[spec['type']](spec)
