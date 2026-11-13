@@ -1,82 +1,65 @@
-# Paper Figure Studio
+# Paper Figure Studio · FigureForge Skill
 
-一个从**表达意图**出发的论文绘图 skill：理解用户想让读者看懂什么，选择合适图型，再生成可编辑 SVG、PDF 和 PNG。
+一个完整、独立运行的 **FigureForge 绘图 skill**。Agent 读取 [SKILL.md](SKILL.md)，使用包内的参考图库、原始提示词、生成流程、修订逻辑和可编辑导出器，从论文或绘图需求完成整套出图任务。
 
-覆盖 12 类图，每类包含可运行 JSON 模板、数据约束、具体画法和检查方法。支持异构多面板、跨行跨列、宽高权重，以及 7×4 的 28 面板示例。
+本仓库的技能名是 **`figureforge`**。当前 `main` 已整体替换为独立 FigureForge skill；此前的十二类模板版本保留在 Git 历史中。
 
-**重点强化案例图、流程图和执行轨迹图的论文风格。** 三类分别匹配 TAI3/BadAgent 的成对案例、TAI3/Task Shield 的方法流程，以及 AgentDAM/ShieldAgent 的执行证据版式。风格包含叙事布局、对象形态、信息密度、字体、颜色和标注，具体见 [论文视觉范式](references/style-selection.md)。
+## 安装与调用
 
-![重点三类论文图范式](assets/previews/priority-atlas.png)
-
-[查看 12 类总览](assets/previews/atlas.png) · [论文风格对照审查](docs/taste-independent-review.md)
-
-## 使用
-
-安装到 Codex 的技能目录：
+首次安装到 Codex 的技能目录：
 
 ```bash
-git clone https://github.com/couls0n/paper-figure-studio.git ~/.codex/skills/paper-figure-studio
-cd ~/.codex/skills/paper-figure-studio
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+git clone https://github.com/couls0n/paper-figure-studio.git ~/.codex/skills/figureforge
 ```
 
-这是公开仓库，无需登录 GitHub 即可访问和克隆。已在其他目录维护仓库时，也可将该目录链接到 `~/.codex/skills/paper-figure-studio`。使用 Python 3.10 或更新版本；本仓库在 Python 3.12 上验证。需要复现本次验证环境时，在 Python 3.12 虚拟环境中安装 [requirements-lock.txt](requirements-lock.txt)。
+其他支持目录型 skill 的 agent，可将整个仓库放入其技能目录，并读取根目录的 `SKILL.md`。运行需要 **Node.js 20+、Chrome/Chromium**，以及 agent 的文件、脚本和视觉理解能力。位图生成路线还需要宿主 agent 的生图/改图工具。浏览器驱动、图库、检索模型和导出资源均已随仓库提供。
 
-在对话中调用：
+调用示例：
 
-> 使用 $paper-figure-studio，左边解释“意图检查→工具调用→反馈”的工作流，右边比较三种方法在四个场景中的成功率。组成 a/b 面板。我会提供模块关系和结果表。
+> 使用 $figureforge，根据这份论文生成一组案例图、问题图和方法图，交付 PNG、SVG 和 PPTX。
 
-用户无需知道图型名称或填写 JSON。代理读取 [SKILL.md](SKILL.md)，完成语义解析、选型、规格填充和视觉检查。
+AI 分析与生成由使用 skill 的 agent 完成，模型请求通过本地任务队列交给它处理。无需原 FigureForge 仓库、线上网站、Codex CLI 登录或额外 API Key。技能会自行启动专用的无界面浏览器，用户无需操作网页。
 
-## 意图怎样路由
+## 完整工作流
 
-`用户原话与材料 → 表达目的 / 关系 / 证据结构 / 明确偏好 → 每面板图型路由 → 论文视觉范式与变体 → 对应模板 → 绘制和源图对照检查`
+`论文/绘图需求 → CLIP + BM25 检索 → 参考图选择 → 版式分析与设计约束 → SVG 或位图生成 → 检查与修订 → 可编辑导出`
 
-语义理解由使用 skill 的代理完成，`scripts/route.py` 校验结构化意图并派发模板。它保留否定和明确指定，发现冲突时返回澄清问题；材料缺失时保留已确定的图型并列出缺项。多面板逐项路由。
+- SVG 路线保留原始提示词、参考图输入、几何检查及修复逻辑。
+- 位图路线保留原始生图请求构建、尺寸检查，以及当前版本的单次整图可编辑重建。
+- 修改保留原图、参考截图、候选结果确认和版本历史。
+- 导出支持 SVG、原生可编辑 PPTX、VSDX、draw.io；PNG 为 SVG 的渲染预览。
+- 任务材料、模型请求与回复、参考图、场景和版本保存在独立项目目录，支持重启恢复。
 
-例如，“按顺序展示实际操作截图”进入执行轨迹；“成功率随轮次变化”进入折线图。“比较两个回答哪里不同”进入案例对照；“比较两个模型的得分”进入柱状图。百分比不自动意味着饼图，多个指标也不自动意味着雷达图。完整边界见 [意图路由协议](references/intent-routing.md)。
+详细操作见 [命令与 agent 协议](references/commands.md)；源码对应关系及当前 Step 4 的具体行为见 [工作流一致性说明](references/workflow.md)。
 
-## 12 类模板
+## 资源与独立性
 
-| 类型 | 主要表达内容 | 绘制方法 | 模板 |
-| --- | --- | --- | --- |
-| 架构 / 流程 | 模块、控制流、边界和反馈 | [architecture](references/types/architecture.md) | [JSON](assets/templates/architecture.json) |
-| 案例对照 | 条件之间的行为、输出或对话差异 | [comparison](references/types/comparison.md) | [JSON](assets/templates/comparison.json) |
-| 执行轨迹 | 截图、动作、观察与步骤 | [trajectory](references/types/trajectory.md) | [JSON](assets/templates/trajectory.json) |
-| 文本 / 代码卡片 | 提示词、代码、规则、JSON | [text_card](references/types/text_card.md) | [JSON](assets/templates/text_card.json) |
-| 分类 / 映射 | 类别从属或字段定义 | [taxonomy](references/types/taxonomy.md) | [JSON](assets/templates/taxonomy.json) |
-| 比例 | 整体组成、饼图、独立同心环 | [proportion](references/types/proportion.md) | [JSON](assets/templates/proportion.json) |
-| 柱状 | 类别数值、排名、分组与误差 | [bar](references/types/bar.md) | [JSON](assets/templates/bar.json) |
-| 折线 | 有序条件下的变化与置信带 | [line](references/types/line.md) | [JSON](assets/templates/line.json) |
-| 矩阵 | 转移、相关、混淆与缺失掩码 | [matrix](references/types/matrix.md) | [JSON](assets/templates/matrix.json) |
-| 散点 | 二维关系、配对位移、嵌入坐标 | [scatter](references/types/scatter.md) | [JSON](assets/templates/scatter.json) |
-| 分布 | 样本直方图或核密度 | [distribution](references/types/distribution.md) | [JSON](assets/templates/distribution.json) |
-| 雷达 | 相同维度与尺度上的指标轮廓 | [radar](references/types/radar.md) | [JSON](assets/templates/radar.json) |
+仓库包含固定到 `a9b7c3a8c4e783278a935e7744f688a7a2eece90` 的完整原始代码与资源快照：
 
-多面板是组合能力，不另算第 13 类：[组合方法](references/composition.md) · [混合四面板模板](assets/templates/multipanel.json) · [28 面板模板](assets/templates/multipanel_28.json)。
+- **3,784 个原始文件**，全部保留原始字节内容。
+- **3,449 张实际索引参考图**及完整元数据。
+- CLIP ONNX 模型、分词器、图文向量、BM25 索引和 WASM 运行库。
+- PDF 读取组件、导出模板、原始工作流模块、示例与署名文件。
+- 独立执行器和已随包提供的 Playwright 驱动。
 
-[查看完整图集](docs/gallery.md)。所有演示数值和界面示意均标记为 illustrative，需要替换为用户自己的材料。
+完整资源约 628 MB，因此首次克隆需要传输较多数据。运行时从本仓库加载资源，不回退到原作者图库或其他开发者的本机目录。
 
-## 本地运行
+## 验证与维护
 
 ```bash
-# intent.json 由代理按路由协议从自然语言和材料中解析
-.venv/bin/python scripts/route.py --intent intent.json --out route.json
-
-# 先复制选中的模板，再替换内容、数据和来源
-.venv/bin/python scripts/render.py assets/templates/bar.json --out output/bar
-.venv/bin/python scripts/render.py assets/templates/multipanel.json --out output/multipanel
-
-# 生成全部模板预览并运行行为测试
-.venv/bin/python scripts/build_gallery.py --out output/gallery
-.venv/bin/python -m unittest discover -s tests -v
+node scripts/figureforge.mjs doctor
+node scripts/verify.mjs
+node scripts/test-runtime.mjs
 ```
 
-统一规格见 [figure-spec.md](references/figure-spec.md)。导出保留可编辑文字和矢量对象；截图保留原始像素。使用中文时需要系统具备中文字体，例如 Noto Sans CJK SC 或 PingFang SC。
+完整性校验检查原始文件的 SHA-256、图库图片、向量维度和独立技能文件。集成测试使用真实本地检索、渲染与导出，模型回复使用明确标注的测试夹具，覆盖生成、修复、修订、PDF、位图重建、版本恢复和中断恢复。见 [验证记录](references/validation.md)。
 
-## 调研与验证
+生成可搬走的完整技能包：
 
-类型体系来自 15 篇论文的 160 个 Figure 标识记录，涵盖正文与附录。部分编号被合并展示，因此这个数字不等于 160 张独立物理图片。仓库保留原创归纳、论文公开链接和定位索引：[语料说明](references/corpus.md)、[逐图索引](references/corpus-index.json)。
+```bash
+python3 scripts/package.py /absolute/output/figureforge.skill.zip
+```
 
-验证区分结构化派发、独立自然语言流程演练、渲染检查。结果见 [验证记录](docs/validation.md) 和 [独立演练](docs/forward-evaluation.md)。模板是可扩展的基线；特殊子型按各类方法调整，不宣称自动复现语料中每个任意版式。
+包内保留完整资源；打包器排除 Git、编辑器及本地运行环境文件，并生成资源清单及 ZIP 校验值。绘图项目应保存在技能目录之外。
+
+原项目来源与许可保留在 [代码许可](LICENSE)、[原始署名](assets/figureforge/NOTICE.md) 和 [图片使用说明](assets/figureforge/IMAGES_POLICY.md)。浏览器驱动的许可与第三方声明保留在其 vendored 目录中。

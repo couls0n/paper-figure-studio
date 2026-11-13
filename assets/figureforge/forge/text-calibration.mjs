@@ -1,0 +1,100 @@
+// Refine recognized text against the source pixels. The model supplies the
+// wording; this pass measures font metrics and placement without another API call.
+export function calibrateEditableText(scene, sourceCanvas, options={}){
+  const maxLabels=options.maxLabels??96;
+  const width=sourceCanvas.width,height=sourceCanvas.height;
+  const src=sourceCanvas.getContext('2d',{willReadFrequently:true}).getImageData(0,0,width,height).data;
+  const colorCanvas=document.createElement('canvas');colorCanvas.width=colorCanvas.height=1;
+  const colorCtx=colorCanvas.getContext('2d',{willReadFrequently:true});
+  const rgb=value=>{
+    try{colorCtx.fillStyle='#000000';colorCtx.fillStyle=value||'#111827';
+      colorCtx.fillRect(0,0,1,1);
+      return [...colorCtx.getImageData(0,0,1,1).data].slice(0,3);
+    }catch(_){}
+    return [17,24,39];
+  };
+  const candidates=(scene.nodes||[]).filter(n=>n.type==='text'&&n.text&&
+    !n.textPath&&!Number(n.rotation)&&!/[\r\n]/.test(n.text)&&
+    Number(n.fontSize)>=10&&Number(n.fontSize)<=130&&n.text.length<=80);
+  const rank=(a,b)=>Number(b.fontSize)*Math.min(String(b.text).length,24)-
+    Number(a.fontSize)*Math.min(String(a.text).length,24);
+  // Reserve a quarter of the fixed calibration budget for small labels in
+  // charts and tables; otherwise prominent headings consume all slots.
+  const denseBudget=Math.min(Math.floor(maxLabels/4),candidates.filter(n=>Number(n.fontSize)<13).length);
+  const labels=[...candidates.filter(n=>Number(n.fontSize)>=13).sort(rank).slice(0,maxLabels-denseBudget),
+    ...candidates.filter(n=>Number(n.fontSize)<13).sort(rank).slice(0,denseBudget)];
+  let adjusted=0;
+  for(const node of labels){
+    const x=Number(node.x),y=Number(node.y),size=Number(node.fontSize);
+    if(![x,y,size].every(Number.isFinite)) continue;
+    const text=String(node.text),nominalWidth=Math.max(Number(node.w)||0,size*text.length*.5);
+    const margin=Math.min(36,Math.max(10,Math.round(size*.4)));
+    const left=Math.max(0,Math.floor(x-margin)),top=Math.max(0,Math.floor(y-margin));
+    const right=Math.min(width,Math.ceil(x+nominalWidth+margin));
+    const bottom=Math.min(height,Math.ceil(y+Math.max(size*1.35,Number(node.h)||0)+margin));
+    const rw=right-left,rh=bottom-top;
+    if(rw<8||rh<8||rw*rh>600000) continue;
+    const fill=rgb(node.fill),sourceMask=new Uint8Array(rw*rh);
+    let sourceCount=0;
+    for(let py=0;py<rh;py++) for(let px=0;px<rw;px++){
+      const i=((top+py)*width+left+px)*4;
+      const dist=Math.abs(src[i]-fill[0])+Math.abs(src[i+1]-fill[1])+Math.abs(src[i+2]-fill[2]);
+      if(dist<95){sourceMask[py*rw+px]=1;sourceCount++;}
+    }
+    if(sourceCount<12||sourceCount>rw*rh*.7) continue;
+    const preferredFont=String(node.fontFamily||'Arial').split(',')[0].trim();
+    const fonts=[preferredFont,'Arial','Arial Narrow','Calibri','Roboto Condensed'];
+    const uniqueFonts=[...new Set(fonts)].filter(font=>font===preferredFont||document.fonts.check(`16px "${font}"`));
+    const candidate=document.createElement('canvas');candidate.width=rw;candidate.height=rh;
+    const ctx=candidate.getContext('2d',{willReadFrequently:true});
+    const initialX=x-left,initialY=y-top;
+    const shift=Math.min(10,Math.max(2,Math.round(size*.16)));
+    const shifts=[0,-1,1,-2,2].map(v=>v*shift/2);
+    let best=null,original=null;
+    for(const font of uniqueFonts) for(const ratio of [.9,1,1.1]){
+      const fontSize=Math.max(6,Math.round(size*ratio));
+      ctx.font=`${node.bold?'bold ':''}${node.italic?'italic ':''}${fontSize}px "${font.replace(/"/g,'')}"`;
+      ctx.textBaseline='alphabetic';ctx.fillStyle='#000000';
+      const measured=ctx.measureText(text).width;
+      if(node.cellBounds&&measured>node.cellBounds.w-4)continue;
+      const maskCanvas=document.createElement('canvas');
+      maskCanvas.width=Math.max(1,Math.min(rw,Math.ceil(measured)+4));
+      maskCanvas.height=Math.max(1,Math.ceil(fontSize*1.4)+4);
+      const mc=maskCanvas.getContext('2d',{willReadFrequently:true});
+      mc.font=ctx.font;mc.fillStyle='#000000';
+      mc.fillText(text,2,fontSize*.84+2);
+      const pixels=mc.getImageData(0,0,maskCanvas.width,maskCanvas.height).data;
+      const points=[];
+      for(let py=0;py<maskCanvas.height;py++) for(let px=0;px<maskCanvas.width;px++)
+        if(pixels[(py*maskCanvas.width+px)*4+3]>110) points.push([px-2,py-2]);
+      if(points.length<8) continue;
+      for(const dy of shifts) for(const dx of shifts){
+        const region=options.region||(options.regions||[]).find(r=>r.id===node.owner);
+        if(region&&(x+dx<region.x||y+dy<region.y||x+dx+Number(node.w)>region.x+region.w||y+dy+Math.max(Number(node.h)||0,fontSize)>region.y+region.h))continue;
+        if(region&&(x+dx+Number(node.w)/2<region.coreX||y+dy+Number(node.h)/2<region.coreY||x+dx+Number(node.w)/2>=region.coreRight||y+dy+Number(node.h)/2>=region.coreBottom))continue;
+        if(node.cellBounds&&(x+dx<node.cellBounds.x+1||y+dy<node.cellBounds.y+1||x+dx+measured>node.cellBounds.x+node.cellBounds.w-1||y+dy+fontSize>node.cellBounds.y+node.cellBounds.h-1))continue;
+        const tx=Math.round(initialX+dx),ty=Math.round(initialY+dy),
+          anchor=node.anchor==='middle'?(Number(node.w)||0)/2-measured/2:
+            node.anchor==='end'?(Number(node.w)||0)-measured:0;
+        let hit=0;
+        for(const [px,py] of points){
+          const xx=Math.round(tx+anchor+px),yy=ty+py;
+          if(xx>=0&&xx<rw&&yy>=0&&yy<rh&&sourceMask[yy*rw+xx]) hit++;
+        }
+        const precision=hit/points.length;
+        const score=2*hit/(points.length+sourceCount)-.004*(Math.abs(dx)+Math.abs(dy))-
+          (font===preferredFont?0:.015)-Math.abs(fontSize-size)/size*.03;
+        if(font===preferredFont&&fontSize===Math.round(size)&&dx===0&&dy===0)
+          original={score,precision};
+        if(!best||score>best.score) best={score,precision,font,fontSize,dx,dy};
+      }
+    }
+    // A nearby rule or neighbouring label can make a wrong candidate look
+    // convincing. Keep the original unless the local pixel fit clearly wins.
+    if(best&&original&&best.precision>.52&&best.score>original.score+.045){
+      node.x=x+best.dx;node.y=y+best.dy;node.fontSize=best.fontSize;
+      node.fontFamily=best.font;adjusted++;
+    }
+  }
+  return adjusted;
+}

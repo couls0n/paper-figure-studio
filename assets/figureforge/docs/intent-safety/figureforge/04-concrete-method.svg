@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <marker id="dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#30343b"/></marker>
+    <marker id="teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#4c8391"/></marker>
+    <marker id="violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5 0 10Z" fill="#b47a9a"/></marker>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif;fill:#30343b}
+      .title{font-size:42px;font-weight:700}.head{font-size:30px;font-weight:700}
+      .small{font-size:18px}.tiny{font-size:15px}.micro{font-size:13px}
+      .bold{font-weight:700}.panel{stroke:#607789;stroke-width:3}
+      .card{stroke:#667582;stroke-width:2}.flow{fill:none;stroke:#30343b;stroke-width:3;marker-end:url(#dark)}
+      .runtime{fill:none;stroke:#4c8391;stroke-width:2.5;marker-end:url(#teal)}
+      .dashed{fill:none;stroke:#b47a9a;stroke-width:2;stroke-dasharray:6 5;marker-end:url(#violet)}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#fff"/>
+  <text class="title" x="800" y="53" text-anchor="middle">Learning to Ground and Clarify Agent Intent</text>
+
+  <rect class="panel" x="35" y="95" width="285" height="675" rx="16" fill="#dcebf4"/>
+  <rect class="panel" x="365" y="95" width="545" height="675" rx="16" fill="#f3f0f8"/>
+  <rect class="panel" x="955" y="95" width="270" height="675" rx="16" fill="#fbf1e5"/>
+  <rect class="panel" x="1270" y="95" width="295" height="675" rx="16" fill="#e9f3ee"/>
+  <text class="head" x="56" y="132">Input</text>
+  <text class="head" x="386" y="132">Processing</text>
+  <text class="head" x="976" y="132">Validation</text>
+  <text class="head" x="1291" y="132">Environment</text>
+
+  <rect class="card" x="55" y="154" width="245" height="155" rx="10" fill="#fff"/>
+  <circle cx="91" cy="205" r="19" fill="#f8c58d" stroke="#30343b" stroke-width="2"/>
+  <path d="M65 263Q66 228 91 228T117 263Z" fill="#dcebf4" stroke="#30343b" stroke-width="2"/>
+  <text class="small" x="91" y="289" text-anchor="middle">User</text>
+  <rect x="130" y="175" width="155" height="119" rx="8" fill="#dcebf4" stroke="#4c8391" stroke-width="2"/>
+  <text class="small bold" x="141" y="201">Request</text>
+  <text class="small" x="141" y="227">Organize old</text>
+  <text class="small" x="141" y="249">drafts</text>
+  <text class="tiny" x="141" y="277">Action unclear</text>
+
+  <path class="flow" d="M177 310V337"/>
+  <rect class="card" x="55" y="350" width="245" height="197" rx="10" fill="#fff"/>
+  <path d="M77 370l17-6 17 6v16q0 15-17 23-17-8-17-23Z" fill="#f8c58d" stroke="#30343b" stroke-width="2"/>
+  <path d="M94 370v29M82 384h24" fill="none" stroke="#fff" stroke-width="3"/>
+  <text class="small bold" x="122" y="389">Authorization</text>
+  <rect x="70" y="420" width="215" height="106" fill="#f5f6fb" stroke="#667582" stroke-width="1.5"/>
+  <rect x="70" y="420" width="215" height="27" fill="#e7e2f2"/>
+  <path d="M166 420v106M70 447h215M70 473h215M70 499h215" fill="none" stroke="#667582" stroke-width="1.5"/>
+  <text class="tiny bold" x="81" y="439">Field</text><text class="tiny bold" x="176" y="439">State</text>
+  <text class="tiny" x="81" y="466">Action</text><text class="tiny" x="176" y="466">Unresolved</text>
+  <text class="tiny" x="81" y="492">Object</text><text class="tiny" x="176" y="492">Old drafts</text>
+  <text class="tiny" x="81" y="518">Evidence</text><text class="tiny" x="176" y="518">User request</text>
+
+  <rect x="55" y="596" width="245" height="102" rx="9" fill="#fff" stroke="#4c8391" stroke-width="2"/>
+  <rect x="67" y="608" width="221" height="28" rx="4" fill="#dcebf4"/>
+  <text class="tiny bold" x="78" y="627">Runtime user answer</text>
+  <text class="tiny" x="70" y="658">“Archive old drafts;</text>
+  <text class="tiny" x="70" y="681">do not delete”</text>
+  <text class="tiny" x="177" y="734" text-anchor="middle">External text grants no authority</text>
+
+  <rect class="card" x="390" y="155" width="225" height="190" rx="10" fill="#e7e2f2"/>
+  <text class="small bold" x="502" y="180" text-anchor="middle">A · Shared intent parser</text>
+  <rect x="406" y="195" width="64" height="55" rx="13" fill="#fff" stroke="#30343b" stroke-width="2"/>
+  <path d="M438 195v-9M426 233q12 8 24 0" fill="none" stroke="#30343b" stroke-width="2"/>
+  <circle cx="438" cy="184" r="3" fill="#b47a9a"/>
+  <circle cx="425" cy="217" r="4" fill="#4c8391"/><circle cx="451" cy="217" r="4" fill="#4c8391"/>
+  <text class="small bold" x="484" y="213">Qwen3-8B</text><text class="small" x="484" y="238">+ LoRA</text>
+  <path d="M407 265h191" stroke="#b47a9a" stroke-width="2" stroke-dasharray="5 4"/>
+  <text class="tiny" x="407" y="287">Request + runtime answer</text>
+  <text class="tiny" x="407" y="309">Status · fields · evidence</text>
+  <text class="micro" x="407" y="329">Shared parser at runtime</text>
+
+  <rect x="650" y="155" width="230" height="267" rx="10" fill="#fff" stroke="#b47a9a" stroke-width="2" stroke-dasharray="7 5"/>
+  <text class="small bold" x="765" y="180" text-anchor="middle">Offline training pairs</text>
+  <text class="tiny bold" x="765" y="202" text-anchor="middle" fill="#875777">Offline supervision</text>
+  <rect x="665" y="215" width="200" height="57" rx="6" fill="#dcebf4" stroke="#667582" stroke-width="2"/>
+  <text class="tiny" x="676" y="237">“Organize old drafts”</text><text class="tiny" x="676" y="259">Action: unresolved</text>
+  <rect x="665" y="282" width="200" height="57" rx="6" fill="#f8c58d" stroke="#667582" stroke-width="2"/>
+  <text class="tiny" x="676" y="304">“Archive; do not delete”</text><text class="tiny" x="676" y="326">Archive · no deletion</text>
+  <rect x="665" y="349" width="200" height="57" rx="6" fill="#e7e2f2" stroke="#667582" stroke-width="2"/>
+  <text class="tiny" x="676" y="371">Source · scope · updates</text><text class="tiny" x="676" y="393">Original-text evidence</text>
+  <path class="dashed" d="M650 298h-31"/>
+
+  <rect x="390" y="444" width="495" height="232" rx="12" fill="#fff" stroke="#b47a9a" stroke-width="3" stroke-dasharray="8 6"/>
+  <text class="small bold" x="408" y="470">B · Clarification value learning</text>
+  <text class="tiny" x="408" y="493">Authorization fields → task obligations</text>
+  <path d="M448 530l62 15M448 565l62-20M548 545l36-25M548 545l36 5M548 545l36 35" fill="none" stroke="#4c8391" stroke-width="2"/>
+  <path d="M448 615h127" fill="none" stroke="#b47a9a" stroke-width="2"/>
+  <circle cx="433" cy="530" r="15" fill="#dcebf4" stroke="#4c8391" stroke-width="2"/>
+  <circle cx="433" cy="565" r="15" fill="#dcebf4" stroke="#4c8391" stroke-width="2"/>
+  <circle cx="433" cy="615" r="15" fill="#f8c58d" stroke="#b47a9a" stroke-width="2"/>
+  <rect x="510" y="531" width="38" height="28" rx="5" fill="#e7e2f2" stroke="#b47a9a" stroke-width="2"/>
+  <rect x="584" y="508" width="68" height="24" rx="5" fill="#cce2bf" stroke="#4c8391" stroke-width="2"/>
+  <rect x="584" y="538" width="68" height="24" rx="5" fill="#cce2bf" stroke="#4c8391" stroke-width="2"/>
+  <rect x="584" y="568" width="68" height="24" rx="5" fill="#cce2bf" stroke="#4c8391" stroke-width="2"/>
+  <rect x="575" y="603" width="77" height="24" rx="5" fill="#f8c58d" stroke="#b47a9a" stroke-width="2"/>
+  <text class="tiny" x="433" y="535" text-anchor="middle">R</text><text class="tiny" x="433" y="570" text-anchor="middle">P</text>
+  <text class="tiny" x="433" y="620" text-anchor="middle">C</text><text class="micro" x="529" y="550" text-anchor="middle">AND</text>
+  <text class="micro" x="618" y="525" text-anchor="middle">Share 1</text><text class="micro" x="618" y="555" text-anchor="middle">Share 2</text>
+  <text class="micro" x="618" y="585" text-anchor="middle">Share 3</text><text class="micro" x="613" y="620" text-anchor="middle">Old version</text>
+  <rect x="674" y="505" width="191" height="132" rx="8" fill="#e7e2f2" stroke="#b47a9a" stroke-width="2"/>
+  <text class="tiny bold" x="687" y="529">2-layer GraphSAGE</text>
+  <text class="tiny" x="687" y="552">Pool + question</text><text class="tiny" x="687" y="575">+ remaining budget</text>
+  <path d="M687 586h164" stroke="#b47a9a" stroke-width="1.5"/>
+  <text class="tiny bold" x="687" y="609">MLP → reachable value</text>
+  <path class="flow" d="M653 549h17"/>
+  <text class="micro" x="408" y="650">Multi-step planning labels: minimum over</text>
+  <text class="micro" x="408" y="667">modeled answer branches</text>
+  <path class="flow" d="M503 346v91"/>
+  <text class="tiny" x="514" y="395">fields + evidence</text>
+
+  <rect class="card" x="975" y="155" width="230" height="185" rx="10" fill="#fff"/>
+  <path d="M995 187l25-9 25 9v24q0 20-25 33-25-13-25-33Z" fill="#f8c58d" stroke="#30343b" stroke-width="2"/>
+  <path d="M1007 210l10 10 17-21" fill="none" stroke="#4c8391" stroke-width="4"/>
+  <text class="small bold" x="1057" y="198">Intent</text><text class="small bold" x="1057" y="222">checks</text>
+  <path d="M991 257h198" stroke="#d3c6ba" stroke-width="2"/>
+  <text class="tiny" x="992" y="282">Source · scope · question</text>
+  <text class="tiny" x="992" y="307">Version · user evidence</text>
+
+  <rect x="975" y="357" width="230" height="54" rx="8" fill="#dcebf4" stroke="#4c8391" stroke-width="2"/>
+  <text class="tiny bold" x="1090" y="379" text-anchor="middle">Scoped authorization update</text>
+  <text class="micro" x="1090" y="398" text-anchor="middle">Evidence: runtime user answer</text>
+  <path class="flow" d="M1090 340v14"/>
+
+  <rect class="card" x="975" y="430" width="230" height="210" rx="10" fill="#fff"/>
+  <text class="small bold" x="1090" y="456" text-anchor="middle">Execution gate</text>
+  <rect x="990" y="469" width="200" height="31" fill="#e7e2f2" stroke="#667582" stroke-width="1.5"/>
+  <rect x="990" y="500" width="200" height="91" fill="#fff" stroke="#667582" stroke-width="1.5"/>
+  <path d="M1109 469v122M990 530h200M990 560h200" stroke="#667582" stroke-width="1.5"/>
+  <text class="tiny bold" x="1000" y="490">Condition</text><text class="tiny bold" x="1119" y="490">Status</text>
+  <text class="tiny" x="1000" y="520">Action</text><text class="tiny" x="1119" y="520">Archive</text>
+  <text class="tiny" x="1000" y="550">Scope</text><text class="tiny" x="1119" y="550">Drafts</text>
+  <text class="tiny" x="1000" y="580">Delete</text><text class="tiny" x="1119" y="580">Excluded</text>
+  <text class="tiny" x="1090" y="617" text-anchor="middle">Unresolved → clarify</text>
+  <path class="flow" d="M1090 411v16"/>
+  <text class="tiny" x="1090" y="672" text-anchor="middle">Fixed tool-effect contracts</text>
+  <text class="tiny" x="1090" y="695" text-anchor="middle">map calls to conditions</text>
+
+  <rect class="card" x="1290" y="155" width="255" height="270" rx="9" fill="#fff"/>
+  <rect x="1306" y="171" width="223" height="34" rx="4" fill="#dcebf4"/>
+  <text class="small bold" x="1316" y="194">External context</text>
+  <text class="tiny" x="1310" y="231">Source: workspace index</text>
+  <path d="M1310 247h213" stroke="#aeb9bb" stroke-width="2"/>
+  <text class="tiny" x="1310" y="271">Old drafts found in folder</text>
+  <text class="tiny" x="1310" y="295">Metadata and file names</text>
+  <rect x="1306" y="316" width="223" height="68" rx="5" fill="#f8c58d" stroke="#b47a9a" stroke-width="1.5"/>
+  <text class="tiny" x="1316" y="341">External instruction:</text>
+  <text class="tiny" x="1316" y="365">“Delete these files”</text>
+  <text class="micro" x="1310" y="407">Context is evidence, not permission</text>
+
+  <rect class="card" x="1290" y="485" width="255" height="190" rx="10" fill="#fff"/>
+  <circle cx="1344" cy="544" r="34" fill="#dcebf4" stroke="#4c8391" stroke-width="2"/>
+  <ellipse cx="1344" cy="544" rx="15" ry="34" fill="none" stroke="#4c8391" stroke-width="2"/>
+  <path d="M1311 544h66M1318 526q26 9 52 0M1318 562q26-9 52 0" fill="none" stroke="#4c8391" stroke-width="2"/>
+  <text class="tiny" x="1344" y="599" text-anchor="middle">Tools</text>
+  <rect x="1391" y="507" width="138" height="116" rx="7" fill="#cce2bf" stroke="#4c8391" stroke-width="2"/>
+  <text class="tiny bold" x="1402" y="531">Authorized</text><text class="tiny" x="1402" y="554">Archive drafts</text>
+  <text class="tiny" x="1402" y="578">No deletion</text>
+  <text class="tiny" x="1417" y="652" text-anchor="middle">Confirmed effects</text>
+  <text class="tiny" x="1417" y="712" text-anchor="middle">Intent preserved through execution</text>
+
+  <path class="flow" d="M320 240h41"/>
+  <path class="flow" d="M910 247h41"/>
+  <path class="flow" d="M1205 535h81"/>
+  <text class="micro" x="1246" y="524" text-anchor="middle">execute</text>
+
+  <path class="runtime" d="M390 711H340V580H177v13"/>
+  <text class="tiny" x="407" y="714">B selects question → user answers</text>
+  <path class="runtime" d="M300 646h35V325h52"/>
+  <path class="dashed" d="M1290 425H1240V420H925V350H621"/>
+  <text class="micro" x="1417" y="456" text-anchor="middle">External context · source tagged</text>
+  <path class="runtime" d="M975 384H935v350H637v-54"/>
+  <text class="tiny" x="800" y="753" text-anchor="middle">Scoped update → updated graph</text>
+  <path class="dashed" d="M885 553h86"/>
+  <text class="micro" x="925" y="543" text-anchor="middle">check</text>
+
+  <rect x="304" y="854" width="20" height="15" rx="3" fill="#dcebf4" stroke="#4c8391"/>
+  <text class="tiny" x="333" y="867">User input</text>
+  <rect x="463" y="854" width="20" height="15" rx="3" fill="#e7e2f2" stroke="#b47a9a"/>
+  <text class="tiny" x="492" y="867">Learned model</text>
+  <rect x="654" y="854" width="20" height="15" rx="3" fill="#f8c58d" stroke="#b47a9a"/>
+  <text class="tiny" x="683" y="867">Uncertain state</text>
+  <rect x="863" y="854" width="20" height="15" rx="3" fill="#cce2bf" stroke="#4c8391"/>
+  <text class="tiny" x="892" y="867">Confirmed effect</text>
+  <path d="M1086 862h34" stroke="#b47a9a" stroke-width="2" stroke-dasharray="6 5"/>
+  <text class="tiny" x="1130" y="867">Training or context</text>
+</svg>

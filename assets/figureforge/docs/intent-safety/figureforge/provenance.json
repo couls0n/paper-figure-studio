@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "date": "2026-11-12",
+  "application": "FigureForge",
+  "entry": "http://127.0.0.1:8766/forge/",
+  "provider": "Codex local login via scripts/serve-codex.mjs",
+  "pipeline": "FigureForge gallery retrieval -> native two-stage reference analysis -> native SVG generation and audit -> native SVG/PPTX export",
+  "preview": "PNG rasterization of exported SVG using sharp at 144 dpi; no content edits",
+  "inputBriefs": "briefs.json",
+  "figures": [
+    {
+      "id": "01-case",
+      "references": [
+        "DRIFT: Dynamic Rule-Based Defense with Injection Isolation for Securing LLM Agents",
+        "ShieldAgent: Shielding Agents via Verifiable Safety Policy Reasoning",
+        "The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents",
+        "CollabLLM: From Passive Responders to Active Collaborators"
+      ],
+      "runs": [
+        {
+          "stage": "reference-analysis",
+          "archive": "_local/codex-runs/1794497251044-302997a9",
+          "referenceImages": 4,
+          "requestSha256": "5b382ac4fdb275befe28721697ba61a5b2df0ca961ba406ba07450f0881a72a4",
+          "responseSha256": "8423e693f90ea1c8598d86fb2c641239549b7c3c707cb35d9951a1ebc0ba3691"
+        },
+        {
+          "stage": "svg-generation",
+          "archive": "_local/codex-runs/1794497306962-999586ae",
+          "referenceImages": 3,
+          "requestSha256": "19c9b838b1b0c1b5d2321ac54f27ce032ba5f5805b2b79dbaae20578fadc6d98",
+          "responseSha256": "d3d27da9d8342371d9f650e8af6761d29fd4d2c053de8cddf76ccc7d2bf0f543"
+        },
+        {
+          "stage": "native-layout-repair",
+          "archive": "_local/codex-runs/1794497466329-ff1076af",
+          "referenceImages": 0,
+          "requestSha256": "b387dd78b92312300bafd5cb5f8603ed868f261d10c33cc72e2af9ecb6a22c54",
+          "responseSha256": "ff443ac6830d2db3561604d8080dbe629256df785387933391eb6be22a37d8bc"
+        }
+      ],
+      "files": {
+        "01-case.svg": {
+          "bytes": 24472,
+          "sha256": "ff443ac6830d2db3561604d8080dbe629256df785387933391eb6be22a37d8bc"
+        },
+        "01-case.pptx": {
+          "bytes": 195646,
+          "sha256": "2f585c419aa5cf9a40b58b01c0ec77d4fed53484842dd36bc1853ba596eb8589"
+        },
+        "01-case.png": {
+          "bytes": 571190,
+          "sha256": "c381163b67f31c4ad441ee1d5e1116b4005abc4c3bb63bde7f4ebe8faac49874"
+        }
+      },
+      "svgViewBox": "0 0 1600 900",
+      "pptxVerification": {
+        "editableShapes": 168,
+        "textRuns": 81,
+        "pictureObjects": 0
+      }
+    },
+    {
+      "id": "02-problem",
+      "references": [
+        "DRIFT: Dynamic Rule-Based Defense with Injection Isolation for Securing LLM Agents",
+        "ShieldAgent: Shielding Agents via Verifiable Safety Policy Reasoning",
+        "The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents",
+        "CollabLLM: From Passive Responders to Active Collaborators"
+      ],
+      "runs": [
+        {
+          "stage": "reference-analysis",
+          "archive": "_local/codex-runs/1794497330959-9566cb1a",
+          "referenceImages": 4,
+          "requestSha256": "5b382ac4fdb275befe28721697ba61a5b2df0ca961ba406ba07450f0881a72a4",
+          "responseSha256": "c545ecee677ac99cba11f3dd4d541912cf73f38d409011c79d4d6b09d08d8bc7"
+        },
+        {
+          "stage": "svg-generation",
+          "archive": "_local/codex-runs/1794497389440-9cdd982a",
+          "referenceImages": 3,
+          "requestSha256": "45d978da3f84fc88c90dbbe78ba809ba2f9881bdc5a943f1ac75ff3b795984e3",
+          "responseSha256": "ae6351b3c83cd5326bb0f21a83cc33cce847f72426869dc91ca9c386c096e91d"
+        }
+      ],
+      "files": {
+        "02-problem.svg": {
+          "bytes": 28408,
+          "sha256": "7597594fa35f8b6d6a7c4ddc9ed74d3f063bbf565b4f02b3856bbe5765975e91"
+        },
+        "02-problem.pptx": {
+          "bytes": 208142,
+          "sha256": "404058da469fd7c64f17e8bc9a3c024eee30ae9f43be61e55f17acba0e38b133"
+        },
+        "02-problem.png": {
+          "bytes": 652372,
+          "sha256": "59009fa1cb2b792ba833fcef93a59b26de206f0fa6e5058d040b314202132d3c"
+        }
+      },
+      "svgViewBox": "0 0 1600 900",
+      "pptxVerification": {
+        "editableShapes": 194,
+        "textRuns": 93,
+        "pictureObjects": 0
+      }
+    },
+    {
+      "id": "03-abstract-method",
+      "references": [
+        "ShieldAgent: Shielding Agents via Verifiable Safety Policy Reasoning",
+        "The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents",
+        "CollabLLM: From Passive Responders to Active Collaborators",
+        "P ref I x: Understand and Adapt to User Preference in Human-Agent Interaction"
+      ],
+      "runs": [
+        {
+          "stage": "reference-analysis",
+          "archive": "_local/codex-runs/1794497445579-f97ba694",
+          "referenceImages": 4,
+          "requestSha256": "bbf34349b4e3140370fccdf33e82c3820079831bee917a4d0790703b14b02b8b",
+          "responseSha256": "4c18f47a6ebb7545fbb697839be769fe97078a9c1cd0755781c39d89bdbc614f"
+        },
+        {
+          "stage": "svg-generation",
+          "archive": "_local/codex-runs/1794497497628-c74691e1",
+          "referenceImages": 3,
+          "requestSha256": "8f47eb3f985ed1fd4e4f5db1d1fcae837d0d7397896df4e893738f4f8078d0a9",
+          "responseSha256": "a51490fa066b5dba698db04df0eb84ba99ab29807bdccc2462052edc7300228c"
+        }
+      ],
+      "files": {
+        "03-abstract-method.svg": {
+          "bytes": 25322,
+          "sha256": "ab54ceb5df5a4302444b7d2a94cafde3905198220752366e6f25b751c1d3911d"
+        },
+        "03-abstract-method.pptx": {
+          "bytes": 198319,
+          "sha256": "ad9ef68fced4ea15515361d46090a240c20cd9a8c5f9ab18bb2538f8705bb197"
+        },
+        "03-abstract-method.png": {
+          "bytes": 650413,
+          "sha256": "fd4bbcf8825c959ed12572ec1c1c7d7981330024b7d8a3d35e1d5c519722ce94"
+        }
+      },
+      "svgViewBox": "0 0 1600 900",
+      "pptxVerification": {
+        "editableShapes": 181,
+        "textRuns": 84,
+        "pictureObjects": 0
+      }
+    },
+    {
+      "id": "04-concrete-method",
+      "references": [
+        "DRIFT: Dynamic Rule-Based Defense with Injection Isolation for Securing LLM Agents",
+        "The Task Shield: Enforcing Task Alignment to Defend Against Indirect Prompt Injection in LLM Agents",
+        "CollabLLM: From Passive Responders to Active Collaborators",
+        "G-Designer: Architecting Multi-agent Communication Topologies via Graph Neural Networks"
+      ],
+      "runs": [
+        {
+          "stage": "reference-analysis",
+          "archive": "_local/codex-runs/1794497601087-9c6cbe19",
+          "referenceImages": 4,
+          "requestSha256": "89083dab9492bd58f19325ee95f8c7776d60431650bb6bb6babd76a068b1557e",
+          "responseSha256": "fc5d0149ba42bee916a7d9292fd89bb6f81326e5849d4a0ca7ae1248a4ca2608"
+        },
+        {
+          "stage": "svg-generation",
+          "archive": "_local/codex-runs/1794497650956-b326575b",
+          "referenceImages": 3,
+          "requestSha256": "0c97ac9b2a309c286c0122334ab8fb6380dd0ccfe04983f7c71ee7194b6c4474",
+          "responseSha256": "34515f8d3ee010b4adb94a1a7f7ec3f9395e780070a304f7bbfc2042b9fa1940"
+        },
+        {
+          "stage": "native-svg-revision-1",
+          "archive": "_local/codex-runs/1794497879795-3c016561",
+          "referenceImages": 1,
+          "requestSha256": "f0b20dcbf9b19683122870f5b0388652f5055b4865397992a20f2f99259fa2be",
+          "responseSha256": "f00c7f5e127a3affd52291340afb5ccddf3af4d8389e6e9f2106c01ca329a95f"
+        },
+        {
+          "stage": "native-svg-revision-2",
+          "archive": "_local/codex-runs/1794498071125-d495d4ae",
+          "referenceImages": 1,
+          "requestSha256": "8fe65038478ae99e4f7b4bfd99c703e66af1a1d0ce30ae808c1037585a42ed6f",
+          "responseSha256": "fd5275b73da4d0ef9be016e705cc544487b91d156a7c815e41d12b721f44fddc"
+        }
+      ],
+      "files": {
+        "04-concrete-method.svg": {
+          "bytes": 14113,
+          "sha256": "fd5275b73da4d0ef9be016e705cc544487b91d156a7c815e41d12b721f44fddc"
+        },
+        "04-concrete-method.pptx": {
+          "bytes": 198934,
+          "sha256": "b75dc22a92f9cf0e7a3ce7e25aeb2ff7e6d49494554ea5c2f79a206c0e292776"
+        },
+        "04-concrete-method.png": {
+          "bytes": 567808,
+          "sha256": "4a5cb1fb991b10c50184f900bf8bd5defdb4fb2ff8a86d9ec78271ef243d672d"
+        }
+      },
+      "svgViewBox": "0 0 1600 900",
+      "pptxVerification": {
+        "editableShapes": 173,
+        "textRuns": 95,
+        "pictureObjects": 0
+      }
+    }
+  ]
+}

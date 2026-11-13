@@ -1,4 +1,4 @@
 interface:
-  display_name: "Paper Figure Studio"
-  short_description: "意图与论文风格双重路由：重点强化案例、流程和执行轨迹，支持12类图与多面板"
-  default_prompt: "使用 $paper-figure-studio 理解我的表达意图和已有材料，选择正确图型与论文视觉范式，生成可编辑的论文图。"
+  display_name: "FigureForge"
+  short_description: "独立运行 FigureForge 的完整论文绘图、检索、修订和可编辑导出流程"
+  default_prompt: "使用 $figureforge，根据我的论文材料检索参考图、生成并检查科学插图，交付预览与可编辑文件。"

@@ -1,0 +1,78 @@
+﻿# Downloaded source PDFs (~1.3 GB, regenerable via scripts/extract_figures.py)
+pdfs/
+
+# Intermediate Figure-1 crops and QC contact sheets (regenerable)
+images/**/*.png
+data/*.png
+
+# Run logs / QA scratch dumps
+data/*.txt
+data/*.log
+# ...but keep the authoritative manual exclusion list and QA provenance
+!data/exclude.txt
+!data/enum_*_ids.txt
+
+# Selection snapshots / backups (selected.json is the canonical one)
+data/selected_prev.json
+
+# Python
+__pycache__/
+*.pyc
+forge/infistar_matrix_results.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# session credentials
+data/or_cookies.json
+data/enrich*.log
+data/enrich*.err
+
+# session challenge pages / misc transient
+data/challenge.html
+data/click*.json
+
+# transient run state (queues, attempts, relay, backups)
+data/attempts.json
+data/pdf_queue.json
+data/pdf_fails.json
+data/batch_jobs.json
+data/batch_missing.json
+data/relay.*
+data/*.backup.jsonl
+data/figures.prev.json
+data/indexes.json
+data/scores.jsonl
+data/analyze.*
+data/*.err
+data/ledger.json
+data/or_test*
+
+# OpenReview clearance token (IP-bound, 5-min TTL)
+data/or_token.txt
+# pool builder scratch HTML
+data/*.html
+
+# GitHub Data API blob cache
+data/gh_blobs.json
+
+# one-off network route scratch tests
+scripts/test_gh_route*.py
+scripts/test_net.py
+data/user_report.bin
+
+# local-only working notes and one-off ops/debug scripts (not part of the public repo)
+_local/
+/HANDOFF.md
+/docs/PROMOTION.md
+/docs/DEMO.md
+data/extract_state.jsonl
+data/matched.json
+
+# local-only GitHub ops scripts (kept on disk, never published)
+scripts/gh_push.py
+scripts/gh_runs.py
+scripts/verify_tree.py

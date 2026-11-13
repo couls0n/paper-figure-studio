@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs>
+    <marker id="arrow-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path id="arrow-dark-shape" data-role="arrowhead" data-editable="true" d="M0 0 L10 5 L0 10 Z" fill="#4c5052"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path id="arrow-teal-shape" data-role="arrowhead" data-editable="true" d="M0 0 L10 5 L0 10 Z" fill="#64a9a5"/>
+    </marker>
+    <style>
+      .title{font:700 40px Arial,sans-serif;fill:#252a2b}
+      .header{font:700 27px Arial,sans-serif;fill:#252a2b}
+      .label{font:700 20px Arial,sans-serif;fill:#303637}
+      .small{font:18px Arial,sans-serif;fill:#303637}
+      .note{font:16px Arial,sans-serif;fill:#4c5052}
+      .tiny{font:14px Arial,sans-serif;fill:#4c5052}
+      .panel{stroke:#8c9a97;stroke-width:2.5}
+      .card{stroke:#8c9a97;stroke-width:2}
+      .edge{stroke:#4c5052;stroke-width:3;fill:none;marker-end:url(#arrow-dark)}
+      .feedback{stroke:#64a9a5;stroke-width:3;fill:none;stroke-dasharray:8 6;marker-end:url(#arrow-teal)}
+      .link{stroke:#4c5052;stroke-width:2;fill:none}
+    </style>
+  </defs>
+
+  <rect id="canvas" data-role="background" data-editable="true" x="0" y="0" width="1600" height="900" fill="#ffffff"/>
+  <text id="figure-title" data-role="title" data-editable="true" x="800" y="43" text-anchor="middle" class="title">Preserving User Intent Through Clarification</text>
+
+  <rect id="panel-input" data-role="section" data-editable="true" x="30" y="60" width="350" height="355" rx="5" fill="#dcefd9" class="panel"/>
+  <rect id="panel-processing" data-role="section" data-editable="true" x="395" y="60" width="715" height="355" rx="5" fill="#dcebf2" class="panel"/>
+  <rect id="panel-graph" data-role="section" data-editable="true" x="1125" y="60" width="445" height="355" rx="5" fill="#dcefd9" class="panel"/>
+  <rect id="panel-runtime" data-role="section" data-editable="true" x="30" y="435" width="1540" height="435" rx="5" fill="#f9e4d7" class="panel"/>
+
+  <text id="head-input" data-role="section-heading" data-editable="true" x="48" y="95" class="header">Input and Context</text>
+  <text id="head-processing" data-role="section-heading" data-editable="true" x="413" y="95" class="header">Structured Processing</text>
+  <text id="head-graph" data-role="section-heading" data-editable="true" x="1143" y="95" class="header">Dependency Graph</text>
+  <text id="head-runtime" data-role="section-heading" data-editable="true" x="48" y="470" class="header">Interaction and Outcomes</text>
+
+  
+  <rect id="user-card" data-role="module" data-editable="true" x="50" y="115" width="91" height="116" rx="12" fill="#dcebf2" class="card"/>
+  <circle id="user-head" data-role="icon" data-editable="true" cx="95" cy="151" r="16" fill="#f9e4d7" stroke="#4c5052" stroke-width="2"/>
+  <path id="user-body" data-role="icon" data-editable="true" d="M68 198 Q70 170 95 170 Q120 170 122 198 Z" fill="#64a9a5" stroke="#4c5052" stroke-width="2"/>
+  <text id="user-label" data-role="label" data-editable="true" x="95" y="219" text-anchor="middle" class="small">User</text>
+  <rect id="request-card" data-role="module" data-editable="true" x="157" y="115" width="203" height="116" rx="12" fill="#ffffff" class="card"/>
+  <text id="request-title" data-role="label" data-editable="true" x="171" y="140" class="label">User request</text>
+  <text id="request-line1" data-role="text" data-editable="true" x="171" y="165" class="small">Share requested files</text>
+  <text id="request-line2" data-role="text" data-editable="true" x="171" y="190" class="small">and organize versions</text>
+  <text id="request-line3" data-role="text" data-editable="true" x="171" y="214" class="note">Dialogue + context</text>
+  <path id="input-arrow" data-role="connector" data-editable="true" d="M141 173 L155 173" class="edge"/>
+  <text id="context-label" data-role="label" data-editable="true" x="53" y="258" class="label">Evidence sources</text>
+  <rect id="source-goal" data-role="module" data-editable="true" x="52" y="270" width="307" height="36" rx="7" fill="#ffffff" class="card"/>
+  <circle id="goal-dot" data-role="status" data-editable="true" cx="71" cy="288" r="7" fill="#64a9a5"/>
+  <text id="goal-text" data-role="text" data-editable="true" x="88" y="294" class="small">Expressed goals</text>
+  <rect id="source-confirmed" data-role="module" data-editable="true" x="52" y="314" width="307" height="36" rx="7" fill="#ffffff" class="card"/>
+  <circle id="confirmed-dot" data-role="status" data-editable="true" cx="71" cy="332" r="7" fill="#64a9a5"/>
+  <text id="confirmed-text" data-role="text" data-editable="true" x="88" y="338" class="small">Confirmed constraints</text>
+  <rect id="source-external" data-role="module" data-editable="true" x="52" y="358" width="307" height="36" rx="7" fill="#ffffff" class="card"/>
+  <circle id="external-dot" data-role="status" data-editable="true" cx="71" cy="376" r="7" fill="#e8c978"/>
+  <text id="external-text" data-role="text" data-editable="true" x="88" y="382" class="small">Hypotheses / external text</text>
+
+  
+  <rect id="extract-card" data-role="module" data-editable="true" x="415" y="116" width="245" height="126" rx="12" fill="#ffffff" class="card"/>
+  <text id="extract-title" data-role="label" data-editable="true" x="430" y="143" class="label">Evidence extraction</text>
+  <circle id="extract-node-a" data-role="diagram-node" data-editable="true" cx="455" cy="177" r="11" fill="#dcebf2" stroke="#4c5052" stroke-width="2"/>
+  <circle id="extract-node-b" data-role="diagram-node" data-editable="true" cx="499" cy="163" r="11" fill="#f9e4d7" stroke="#4c5052" stroke-width="2"/>
+  <circle id="extract-node-c" data-role="diagram-node" data-editable="true" cx="499" cy="196" r="11" fill="#f0dce9" stroke="#4c5052" stroke-width="2"/>
+  <path id="extract-links" data-role="connector" data-editable="true" d="M466 174 L488 166 M466 181 L488 193" class="link"/>
+  <text id="extract-detail1" data-role="text" data-editable="true" x="525" y="174" class="note">Identify fields</text>
+  <text id="extract-detail2" data-role="text" data-editable="true" x="525" y="197" class="note">Attach sources</text>
+  <rect id="state-card" data-role="module" data-editable="true" x="415" y="263" width="245" height="126" rx="12" fill="#ffffff" class="card"/>
+  <text id="state-title" data-role="label" data-editable="true" x="429" y="288" class="label">Authorization state</text>
+  <text id="state-col1" data-role="table-header" data-editable="true" x="430" y="313" class="note">Field / scope</text>
+  <text id="state-col2" data-role="table-header" data-editable="true" x="561" y="313" class="note">Status</text>
+  <path id="state-rule" data-role="divider" data-editable="true" d="M429 320 H645" class="link"/>
+  <text id="state-row1" data-role="text" data-editable="true" x="430" y="342" class="note">Recipient R</text>
+  <rect id="state-status1" data-role="status" data-editable="true" x="561" y="327" width="84" height="21" rx="5" fill="#e8c978"/>
+  <text id="state-status1-label" data-role="text" data-editable="true" x="603" y="343" text-anchor="middle" class="tiny">Unresolved</text>
+  <text id="state-row2" data-role="text" data-editable="true" x="430" y="370" class="note">Checklist</text>
+  <rect id="state-status2" data-role="status" data-editable="true" x="561" y="355" width="84" height="21" rx="5" fill="#64a9a5"/>
+  <text id="state-status2-label" data-role="text" data-editable="true" x="603" y="371" text-anchor="middle" class="tiny">Confirmed</text>
+  <path id="extract-state-arrow" data-role="connector" data-editable="true" d="M537 242 V260" class="edge"/>
+
+  <rect id="refine-group" data-role="group" data-editable="true" x="688" y="115" width="397" height="274" rx="14" fill="#f7fbfa" stroke="#8c9a97" stroke-width="2" stroke-dasharray="8 6"/>
+  <text id="refine-title" data-role="label" data-editable="true" x="705" y="144" class="label">Separate and ground</text>
+  <rect id="refine-left" data-role="module" data-editable="true" x="706" y="158" width="160" height="147" rx="10" fill="#f0dce9" class="card"/>
+  <text id="refine-left-title" data-role="label" data-editable="true" x="786" y="183" text-anchor="middle" class="small">Candidate claims</text>
+  <circle id="claim-a" data-role="diagram-node" data-editable="true" cx="741" cy="218" r="12" fill="#e8c978" stroke="#4c5052" stroke-width="2"/>
+  <circle id="claim-b" data-role="diagram-node" data-editable="true" cx="823" cy="211" r="12" fill="#f9e4d7" stroke="#4c5052" stroke-width="2"/>
+  <circle id="claim-c" data-role="diagram-node" data-editable="true" cx="785" cy="259" r="12" fill="#dcebf2" stroke="#4c5052" stroke-width="2"/>
+  <path id="claim-links" data-role="connector" data-editable="true" d="M752 216 L811 212 M748 228 L777 250 M815 221 L793 250" class="link"/>
+  <text id="claim-note" data-role="text" data-editable="true" x="786" y="292" text-anchor="middle" class="note">Source tagged</text>
+  <rect id="refine-right" data-role="module" data-editable="true" x="906" y="158" width="160" height="147" rx="10" fill="#dcefd9" class="card"/>
+  <text id="refine-right-title" data-role="label" data-editable="true" x="986" y="183" text-anchor="middle" class="small">Grounded fields</text>
+  <circle id="ground-a" data-role="diagram-node" data-editable="true" cx="941" cy="218" r="12" fill="#64a9a5" stroke="#4c5052" stroke-width="2"/>
+  <circle id="ground-b" data-role="diagram-node" data-editable="true" cx="1024" cy="218" r="12" fill="#e8c978" stroke="#4c5052" stroke-width="2"/>
+  <circle id="ground-c" data-role="diagram-node" data-editable="true" cx="982" cy="259" r="12" fill="#dcebf2" stroke="#4c5052" stroke-width="2"/>
+  <path id="ground-links" data-role="connector" data-editable="true" d="M953 218 H1012 M949 228 L974 250 M1016 228 L990 250" class="link"/>
+  <text id="ground-note" data-role="text" data-editable="true" x="986" y="292" text-anchor="middle" class="note">Scope + evidence</text>
+  <path id="refine-arrow" data-role="connector" data-editable="true" d="M867 231 H904" class="edge"/>
+  <rect id="refine-legend" data-role="module" data-editable="true" x="707" y="325" width="358" height="44" rx="8" fill="#ffffff" class="card"/>
+  <text id="refine-legend-text" data-role="text" data-editable="true" x="721" y="352" class="note">Intent ≠ hypothesis ≠ external content</text>
+  <path id="state-refine-arrow" data-role="connector" data-editable="true" d="M660 193 H686" class="edge"/>
+  <path id="processing-graph-arrow" data-role="connector" data-editable="true" d="M1086 225 H1123" class="edge"/>
+
+  
+  <rect id="graph-card" data-role="module" data-editable="true" x="1142" y="113" width="410" height="221" rx="12" fill="#ffffff" class="card"/>
+  <text id="graph-subtitle" data-role="label" data-editable="true" x="1157" y="139" class="small">Authorization conditions → obligations</text>
+  <rect id="node-r" data-role="field-node" data-editable="true" x="1160" y="155" width="111" height="37" rx="8" fill="#e8c978" class="card"/>
+  <text id="node-r-label" data-role="text" data-editable="true" x="1215" y="179" text-anchor="middle" class="small">Recipient R</text>
+  <rect id="node-p" data-role="field-node" data-editable="true" x="1160" y="202" width="111" height="37" rx="8" fill="#e8c978" class="card"/>
+  <text id="node-p-label" data-role="text" data-editable="true" x="1215" y="226" text-anchor="middle" class="small">Access P</text>
+  <rect id="node-c" data-role="field-node" data-editable="true" x="1160" y="268" width="111" height="37" rx="8" fill="#e8c978" class="card"/>
+  <text id="node-c-label" data-role="text" data-editable="true" x="1215" y="292" text-anchor="middle" class="small">Old files C</text>
+  <path id="r-to-and" data-role="connector" data-editable="true" d="M1271 173 H1290 V192 H1302" class="link"/>
+  <path id="p-to-and" data-role="connector" data-editable="true" d="M1271 220 H1290 V205 H1302" class="link"/>
+  <rect id="and-gate" data-role="logic-gate" data-editable="true" x="1302" y="181" width="56" height="35" rx="7" fill="#f0dce9" class="card"/>
+  <text id="and-label" data-role="text" data-editable="true" x="1330" y="204" text-anchor="middle" class="small">AND</text>
+  <path id="and-fan" data-role="connector" data-editable="true" d="M1358 198 H1372 M1372 161 V239 M1372 161 H1387 M1372 200 H1387 M1372 239 H1387" class="link"/>
+  <rect id="task-t1" data-role="obligation" data-editable="true" x="1388" y="145" width="146" height="32" rx="7" fill="#dcebf2" class="card"/>
+  <text id="task-t1-label" data-role="text" data-editable="true" x="1461" y="166" text-anchor="middle" class="note">T1 Technical note</text>
+  <rect id="task-t2" data-role="obligation" data-editable="true" x="1388" y="184" width="146" height="32" rx="7" fill="#dcebf2" class="card"/>
+  <text id="task-t2-label" data-role="text" data-editable="true" x="1461" y="205" text-anchor="middle" class="note">T2 Test report</text>
+  <rect id="task-t3" data-role="obligation" data-editable="true" x="1388" y="223" width="146" height="32" rx="7" fill="#dcebf2" class="card"/>
+  <text id="task-t3-label" data-role="text" data-editable="true" x="1461" y="244" text-anchor="middle" class="note">T3 Deploy guide</text>
+  <path id="c-to-t4" data-role="connector" data-editable="true" d="M1271 286 H1386" class="edge"/>
+  <rect id="task-t4" data-role="obligation" data-editable="true" x="1388" y="270" width="146" height="32" rx="7" fill="#f9e4d7" class="card"/>
+  <text id="task-t4-label" data-role="text" data-editable="true" x="1461" y="291" text-anchor="middle" class="note">T4 Old versions</text>
+  <rect id="graph-note-card" data-role="module" data-editable="true" x="1142" y="346" width="410" height="48" rx="8" fill="#f9e4d7" class="card"/>
+  <text id="graph-note" data-role="text" data-editable="true" x="1156" y="375" class="note">R and P both required for each sharing task</text>
+
+  
+  <path id="graph-handoff" data-role="connector" data-editable="true" d="M1515 415 V449 H1510" class="edge"/>
+  <path id="user-choice-arrow" data-role="connector" data-editable="true" d="M361 611 H404" class="edge"/>
+  <path id="choice-answer-arrow" data-role="connector" data-editable="true" d="M588 591 H610" class="edge"/>
+  <path id="answer-update-arrow" data-role="connector" data-editable="true" d="M770 591 H790" class="edge"/>
+  <path id="update-check-arrow" data-role="connector" data-editable="true" d="M959 591 H992" class="edge"/>
+  <path id="check-outcome-arrow" data-role="connector" data-editable="true" d="M1286 591 H1321" class="edge"/>
+
+  
+  <rect id="agent-card" data-role="module" data-editable="true" x="50" y="492" width="137" height="158" rx="12" fill="#dcebf2" class="card"/>
+  <text id="agent-title" data-role="label" data-editable="true" x="118" y="518" text-anchor="middle" class="label">Agent</text>
+  <rect id="agent-face" data-role="icon" data-editable="true" x="76" y="538" width="84" height="62" rx="23" fill="#ffffff" stroke="#4c5052" stroke-width="2"/>
+  <circle id="agent-eye1" data-role="icon" data-editable="true" cx="101" cy="566" r="6" fill="#64a9a5"/>
+  <circle id="agent-eye2" data-role="icon" data-editable="true" cx="135" cy="566" r="6" fill="#64a9a5"/>
+  <path id="agent-smile" data-role="icon" data-editable="true" d="M105 582 Q118 591 132 582 M118 538 V529" class="link"/>
+  <circle id="agent-antenna" data-role="icon" data-editable="true" cx="118" cy="527" r="4" fill="#d98968"/>
+  <text id="agent-subtitle" data-role="text" data-editable="true" x="118" y="628" text-anchor="middle" class="note">Runtime loop</text>
+  <rect id="dialogue-card" data-role="module" data-editable="true" x="200" y="492" width="160" height="158" rx="12" fill="#f0dce9" class="card"/>
+  <text id="dialogue-title" data-role="label" data-editable="true" x="214" y="518" class="label">Dialogue</text>
+  <rect id="dialogue-bubble1" data-role="dialogue" data-editable="true" x="212" y="531" width="136" height="44" rx="8" fill="#ffffff" class="card"/>
+  <text id="dialogue-line1" data-role="text" data-editable="true" x="223" y="549" class="tiny">Which recipient</text>
+  <text id="dialogue-line2" data-role="text" data-editable="true" x="223" y="567" class="tiny">and access?</text>
+  <rect id="dialogue-bubble2" data-role="dialogue" data-editable="true" x="212" y="584" width="136" height="49" rx="8" fill="#dcefd9" class="card"/>
+  <text id="dialogue-line3" data-role="text" data-editable="true" x="223" y="604" class="tiny">User answers</text>
+  <text id="dialogue-line4" data-role="text" data-editable="true" x="223" y="622" class="tiny">within scope</text>
+  <rect id="history-card" data-role="module" data-editable="true" x="50" y="668" width="310" height="132" rx="12" fill="#ffffff" class="card"/>
+  <text id="history-title" data-role="label" data-editable="true" x="66" y="694" class="label">Interaction history</text>
+  <text id="history-line1" data-role="text" data-editable="true" x="66" y="720" class="note">Request and source evidence</text>
+  <text id="history-line2" data-role="text" data-editable="true" x="66" y="747" class="note">Questions and user answers</text>
+  <text id="history-line3" data-role="text" data-editable="true" x="66" y="774" class="note">Remaining confirmation effort</text>
+
+  
+  <rect id="runtime-group" data-role="group" data-editable="true" x="405" y="492" width="566" height="308" rx="14" fill="#fffaf7" stroke="#8c9a97" stroke-width="2" stroke-dasharray="8 6"/>
+  <text id="runtime-group-title" data-role="label" data-editable="true" x="423" y="519" class="label">Budget-aware clarification</text>
+  <rect id="choice-card" data-role="module" data-editable="true" x="423" y="539" width="165" height="111" rx="10" fill="#dcebf2" class="card"/>
+  <text id="choice-title" data-role="label" data-editable="true" x="436" y="565" class="small">Choose a field</text>
+  <text id="choice-detail1" data-role="text" data-editable="true" x="436" y="590" class="note">Budget = remaining</text>
+  <text id="choice-detail2" data-role="text" data-editable="true" x="436" y="612" class="note">confirmation effort</text>
+  <text id="choice-detail3" data-role="text" data-editable="true" x="436" y="636" class="note">Track obligations</text>
+  <rect id="answer-card" data-role="module" data-editable="true" x="610" y="539" width="160" height="111" rx="10" fill="#f0dce9" class="card"/>
+  <text id="answer-title" data-role="label" data-editable="true" x="624" y="565" class="small">User answer</text>
+  <text id="answer-detail1" data-role="text" data-editable="true" x="624" y="591" class="note">Confirm, deny, or</text>
+  <text id="answer-detail2" data-role="text" data-editable="true" x="624" y="613" class="note">leave unresolved</text>
+  <text id="answer-detail3" data-role="text" data-editable="true" x="624" y="636" class="note">Record evidence</text>
+  <rect id="update-card" data-role="module" data-editable="true" x="790" y="539" width="164" height="111" rx="10" fill="#dcefd9" class="card"/>
+  <text id="update-title" data-role="label" data-editable="true" x="802" y="565" class="small">Scoped update</text>
+  <rect id="update-confirmed-chip" data-role="status" data-editable="true" x="803" y="578" width="138" height="25" rx="5" fill="#64a9a5"/>
+  <text id="update-confirmed-text" data-role="text" data-editable="true" x="872" y="596" text-anchor="middle" class="tiny">Confirmed field</text>
+  <rect id="update-unresolved-chip" data-role="status" data-editable="true" x="803" y="613" width="138" height="25" rx="5" fill="#e8c978"/>
+  <text id="update-unresolved-text" data-role="text" data-editable="true" x="872" y="631" text-anchor="middle" class="tiny">Unresolved field</text>
+  <rect id="example-card" data-role="module" data-editable="true" x="423" y="671" width="531" height="105" rx="10" fill="#ffffff" class="card"/>
+  <text id="example-title" data-role="label" data-editable="true" x="437" y="695" class="small">Illustrative valid-answer branch</text>
+  <rect id="example-budget1" data-role="example" data-editable="true" x="436" y="708" width="235" height="49" rx="7" fill="#f9e4d7" class="card"/>
+  <text id="example-budget1-label" data-role="text" data-editable="true" x="447" y="729" class="note">Budget 1: ask C → T4</text>
+  <text id="example-budget1-count" data-role="text" data-editable="true" x="447" y="747" class="tiny">1 obligation completed</text>
+  <rect id="example-budget2" data-role="example" data-editable="true" x="682" y="708" width="257" height="49" rx="7" fill="#dcebf2" class="card"/>
+  <text id="example-budget2-label" data-role="text" data-editable="true" x="693" y="729" class="note">Budget 2: ask R → P</text>
+  <text id="example-budget2-count" data-role="text" data-editable="true" x="693" y="747" class="tiny">T1–T3: 3 obligations completed</text>
+
+  
+  <rect id="decision-card" data-role="module" data-editable="true" x="993" y="492" width="293" height="199" rx="12" fill="#dcebf2" class="card"/>
+  <text id="decision-title" data-role="label" data-editable="true" x="1008" y="519" class="label">Execution check</text>
+  <path id="shield" data-role="icon" data-editable="true" d="M1012 544 L1036 535 L1060 544 V566 Q1058 586 1036 597 Q1014 586 1012 566 Z" fill="#ffffff" stroke="#64a9a5" stroke-width="3"/>
+  <path id="shield-check" data-role="icon" data-editable="true" d="M1024 565 L1033 574 L1049 555" fill="none" stroke="#64a9a5" stroke-width="3"/>
+  <text id="decision-line1" data-role="text" data-editable="true" x="1073" y="554" class="note">Check field status,</text>
+  <text id="decision-line2" data-role="text" data-editable="true" x="1073" y="577" class="note">object and scope</text>
+  <rect id="formula-card" data-role="formula" data-editable="true" x="1008" y="615" width="263" height="58" rx="8" fill="#ffffff" class="card"/>
+  <text id="formula-line1" data-role="text" data-editable="true" x="1020" y="638" class="note">Share(Ti) = confirmed(R)</text>
+  <text id="formula-line2" data-role="text" data-editable="true" x="1020" y="661" class="note">AND confirmed(P), i = 1–3</text>
+  <rect id="local-lane" data-role="module" data-editable="true" x="993" y="705" width="293" height="95" rx="10" fill="#ffffff" class="card"/>
+  <text id="local-title" data-role="label" data-editable="true" x="1008" y="732" class="small">Independent lane</text>
+  <circle id="local-check-circle" data-role="status" data-editable="true" cx="1021" cy="760" r="10" fill="#64a9a5"/>
+  <path id="local-check" data-role="icon" data-editable="true" d="M1015 760 L1020 765 L1027 755" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <text id="local-text" data-role="text" data-editable="true" x="1041" y="766" class="note">Local checklist proceeds</text>
+
+  <rect id="outcome-allow" data-role="outcome" data-editable="true" x="1323" y="492" width="226" height="92" rx="10" fill="#dcefd9" class="card"/>
+  <circle id="outcome-allow-icon" data-role="icon" data-editable="true" cx="1347" cy="524" r="13" fill="#64a9a5"/>
+  <path id="outcome-allow-check" data-role="icon" data-editable="true" d="M1340 524 L1345 529 L1354 519" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <text id="outcome-allow-title" data-role="label" data-editable="true" x="1367" y="528" class="small">Authorized effects</text>
+  <text id="outcome-allow-note" data-role="text" data-editable="true" x="1338" y="558" class="note">Execute within scope</text>
+  <rect id="outcome-hold" data-role="outcome" data-editable="true" x="1323" y="600" width="226" height="92" rx="10" fill="#f0dce9" class="card"/>
+  <circle id="outcome-hold-icon" data-role="icon" data-editable="true" cx="1347" cy="632" r="13" fill="#d98968"/>
+  <path id="outcome-hold-mark" data-role="icon" data-editable="true" d="M1341 632 H1353" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <text id="outcome-hold-title" data-role="label" data-editable="true" x="1367" y="636" class="small">Route unavailable</text>
+  <text id="outcome-hold-note" data-role="text" data-editable="true" x="1338" y="666" class="note">Denied or unresolved</text>
+  <rect id="outcome-summary" data-role="module" data-editable="true" x="1323" y="708" width="226" height="92" rx="10" fill="#ffffff" class="card"/>
+  <text id="outcome-summary-title" data-role="label" data-editable="true" x="1338" y="734" class="small">Next decision</text>
+  <text id="outcome-summary-line1" data-role="text" data-editable="true" x="1338" y="758" class="note">Updated state + remaining</text>
+  <text id="outcome-summary-line2" data-role="text" data-editable="true" x="1338" y="780" class="note">obligations and budget</text>
+  <path id="hold-to-next" data-role="connector" data-editable="true" d="M1436 693 V706" class="edge"/>
+  <path id="feedback-loop" data-role="feedback-connector" data-editable="true" d="M1436 800 V833 H505 V652" class="feedback"/>
+  <rect id="feedback-label-bg" data-role="label-background" data-editable="true" x="765" y="819" width="346" height="28" rx="5" fill="#f9e4d7"/>
+  <text id="feedback-label" data-role="text" data-editable="true" x="938" y="839" text-anchor="middle" class="note">Re-evaluate with state and obligations</text>
+  <text id="example-caveat" data-role="note" data-editable="true" x="50" y="848" class="note">Toy case: valid answers shown; outcomes depend on user responses.</text>
+</svg>
